@@ -1,2 +1,29 @@
 ---
-# defaults file for bitbucket
+
+# (c) Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+bitbucket_catalina: "/opt/atlassian/bitbucket"
+bitbucket_connector_port: "7990"
+bitbucket_context_path: ~
+bitbucket_group: "daemon"
+bitbucket_home: "/var/atlassian/application-data/bitbucket"
+bitbucket_jvm_maximum_memory: "768m"
+bitbucket_jvm_minimum_memory: "384m"
+bitbucket_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+bitbucket_owner: "daemon"
+bitbucket_proxy_name: ~
+bitbucket_scheme: ~
+bitbucket_server_port: "8006"
+bitbucket_url: "https://downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-5.3.1.tar.gz"

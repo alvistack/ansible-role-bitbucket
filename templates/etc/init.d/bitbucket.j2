@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# {{ ansible_managed }}
+
+### BEGIN INIT INFO
+# Provides:          bitbucket
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Initscript for Atlassian BitBucket
+# Description:  Automatically start Atlassian BitBucket when the system starts up.
+#               Provide commands for manually starting and stopping BitBucket.
+### END INIT INFO
+
+RUN_AS_USER={{ bitbucket_owner }}
+CATALINA_HOME={{ bitbucket_catalina }}
+
+start() {
+    echo "Starting BitBucket: "
+    if [ "x$USER" != "x$RUN_AS_USER" ]; then
+        su -s /bin/bash $RUN_AS_USER -c "$CATALINA_HOME/bin/start-bitbucket.sh $@"
+    else
+        $CATALINA_HOME/bin/start-bitbucket.sh $@
+    fi
+    echo "done."
+}
+
+stop() {
+    echo "Shutting down BitBucket: "
+    if [ "x$USER" != "x$RUN_AS_USER" ]; then
+        su -s /bin/bash $RUN_AS_USER -c "$CATALINA_HOME/bin/stop-bitbucket.sh $@"
+    else
+        $CATALINA_HOME/bin/stop-bitbucket.sh $@
+    fi
+    echo "done."
+}
+
+case "$1" in
+    start)
+        start ${@:2}
+        ;;
+    stop)
+        stop ${@:2}
+        ;;
+    restart)
+        $0 stop ${@:2}
+        sleep 10
+        #echo "Hard killing any remaining threads.."
+        #kill -9 `cat $CATALINA_HOME/work/catalina.pid`
+        $0 start ${@:2}
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+esac
+
+exit 0
