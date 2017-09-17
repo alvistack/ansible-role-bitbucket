@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# {{ ansible_managed }}
+
+if [ -n "${BITBUCKET_USER}" ]; then
+    return
+fi
+
+# START INSTALLER MAGIC ! DO NOT EDIT !
+BITBUCKET_USER="{{ bitbucket_owner }}" ##
+# END INSTALLER MAGIC ! DO NOT EDIT !
+
+export BITBUCKET_USER
