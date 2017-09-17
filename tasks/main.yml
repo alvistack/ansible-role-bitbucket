@@ -1,2 +1,140 @@
 ---
-# tasks file for bitbucket
+
+# (c) Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: include release specific variables
+  include_vars: "{{ loop_var }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths: "../vars"
+      skip: "yes"
+  loop_control:
+    loop_var: "loop_var"
+  tags: bitbucket
+
+- name: include release specific tasks
+  include: "{{ loop_var }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths: "."
+      skip: "yes"
+  loop_control:
+    loop_var: "loop_var"
+  tags: bitbucket
+
+- name: prepare files
+  file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { dest: "{{ bitbucket_catalina }}", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755", state: "directory" }
+    - { dest: "{{ bitbucket_home }}", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755", state: "directory" }
+    - { dest: "{{ bitbucket_home }}/shared", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755", state: "directory" }
+  tags: bitbucket
+
+- name: unarchive package
+  shell: |
+    ARCHIVE="`mktemp -u`.tar.gz"
+    curl -sL {{ bitbucket_url }} > $ARCHIVE
+    tar zxf $ARCHIVE -C {{ bitbucket_catalina }} --strip-components=1
+    chown -Rf {{ bitbucket_owner }}:{{ bitbucket_group }} {{ bitbucket_catalina }}
+    rm -rf $ARCHIVE
+  args:
+    creates: "{{ bitbucket_catalina }}/bin/start-bitbucket.sh"
+  tags: bitbucket
+
+- name: copy templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: "etc/init.d/bitbucket.j2", dest: "/etc/init.d/bitbucket", owner: "root", group: "root", mode: "0755" }
+    - { src: "opt/atlassian/bitbucket/bin/_start-webapp.sh.j2", dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0644" }
+    - { src: "opt/atlassian/bitbucket/bin/set-bitbucket-home.sh.j2", dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-home.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0644" }
+  tags: bitbucket
+
+- name: create bitbucket.properties
+  copy:
+    content: ""
+    dest: "{{ bitbucket_home }}/shared/bitbucket.properties"
+    force: "no"
+    owner: "{{ bitbucket_owner }}"
+    group: "{{ bitbucket_group }}"
+    mode: "0644"
+  tags: bitbucket
+
+- name: configure bitbucket.properties
+  lineinfile:
+    path: "{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.context-path=", line: "server.context-path={{ bitbucket_context_path }}", state: "present" }
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.port=", line: "server.port={{ bitbucket_connector_port }}", state: "present" }
+  tags: bitbucket
+
+- name: configure bitbucket.properties (HTTP reverse proxy)
+  lineinfile:
+    path: "{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-name=", line: "server.proxy-name={{ bitbucket_proxy_name }}", state: "present" }
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-port=", line: "server.proxy-port=80", state: "present" }
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.scheme=", line: "server.scheme={{ bitbucket_scheme }}", state: "present" }
+  when:
+    - bitbucket_proxy_name != none
+    - bitbucket_scheme == "http"
+  tags: bitbucket
+
+- name: configure bitbucket.properties (HTTPS reverse proxy)
+  lineinfile:
+    path: "{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-name=", line: "server.proxy-name={{ bitbucket_proxy_name }}", state: "present" }
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-port=", line: "server.proxy-port=443", state: "present" }
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.scheme=", line: "server.scheme={{ bitbucket_scheme }}", state: "present" }
+    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.secure=", line: "server.secure=true", state: "present" }
+  when:
+    - bitbucket_proxy_name != none
+    - bitbucket_scheme == "https"
+  tags: bitbucket
+
+- name: enable service
+  service:
+    name: "bitbucket"
+    enabled: "yes"
+  tags: bitbucket
