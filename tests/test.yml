@@ -25,6 +25,7 @@
   roles:
     - role: ansible-role-apt
     - role: ansible-role-yum
+    - role: ansible-role-git
     - role: ansible-role-java
     - role: ansible-role-bitbucket
     - role: ansible-role-mariadb-connector-java
