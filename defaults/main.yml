@@ -19,8 +19,8 @@ bitbucket_connector_port: "7990"
 bitbucket_context_path: ~
 bitbucket_group: "daemon"
 bitbucket_home: "/var/atlassian/application-data/bitbucket"
-bitbucket_jvm_maximum_memory: "768m"
-bitbucket_jvm_minimum_memory: "384m"
+bitbucket_jvm_maximum_memory: "1024m"
+bitbucket_jvm_minimum_memory: "512m"
 bitbucket_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 bitbucket_owner: "daemon"
 bitbucket_proxy_name: ~
