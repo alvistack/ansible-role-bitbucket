@@ -4,6 +4,7 @@ Ansible Role for BitBucket
 [![Build Status](https://travis-ci.org/alvistack/ansible-role-bitbucket.svg?branch=master)](https://travis-ci.org/alvistack/ansible-role-bitbucket)
 [![GitHub tag](https://img.shields.io/github/tag/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.bitbucket-blue.svg)](https://galaxy.ansible.com/alvistack/bitbucket)
 
 Ansible Role for Atlassian BitBucket Installation.
 
