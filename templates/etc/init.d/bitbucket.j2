@@ -15,7 +15,7 @@
 
 RUN_AS_USER={{ bitbucket_owner }}
 CATALINA_HOME={{ bitbucket_catalina }}
-PID_FILE={{ bitbucket_home }}/log/bitbucket.pid
+CATALINA_PID={{ bitbucket_home }}/log/bitbucket.pid
 
 start() {
     echo "Starting BitBucket: "
@@ -38,8 +38,8 @@ stop() {
 }
 
 status() {
-    if [ -f $PID_FILE ]; then
-        PID=$(<$PID_FILE)
+    if [ -f $CATALINA_PID ]; then
+        PID=$(<$CATALINA_PID)
         if $(kill -0 "${PID:-}" 2> /dev/null); then
             echo "BitBucket is running"
             exit 0
