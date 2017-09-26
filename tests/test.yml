@@ -27,6 +27,21 @@
     - role: ansible-role-yum
     - role: ansible-role-git
     - role: ansible-role-java
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-bitbucket
+      # Owner and group for Bitbucket.
+      bitbucket_owner: "daemon"
+      bitbucket_group: "daemon"
+      # Location for the $BITBUCKET_HOME directory.
+      bitbucket_home: "/var/atlassian/application-data/bitbucket"
+      # Location for the $BITBUCKET_CATALINA directory.
+      bitbucket_catalina: "/opt/atlassian/bitbucket"
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/bitbucket/app/WEB-INF/lib/mariadb-connector-java.jar"
