@@ -39,9 +39,25 @@
       bitbucket_home: "/var/atlassian/application-data/bitbucket"
       # Location for the $BITBUCKET_CATALINA directory.
       bitbucket_catalina: "/opt/atlassian/bitbucket"
+      # Bitbucket Apache Tomcat connector and server port.
+      bitbucket_connector_port: "7990"
+      bitbucket_server_port: "8006"
 
 - hosts: all
   remote_user: root
   roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/bitbucket/app/WEB-INF/lib/mariadb-connector-java.jar"
+
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: service bitbucket start
+      service:
+        name: "bitbucket"
+        enabled: "yes"
+
+    - name: check port
+      wait_for:
+        port: "7990"
+        timeout: "300"
