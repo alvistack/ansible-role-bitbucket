@@ -39,6 +39,9 @@
       bitbucket_home: "/var/atlassian/application-data/bitbucket"
       # Location for the $BITBUCKET_CATALINA directory.
       bitbucket_catalina: "/opt/atlassian/bitbucket"
+      # Bitbucket Apache Tomcat connector and server port.
+      bitbucket_connector_port: "7990"
+      bitbucket_server_port: "8006"
 
 - hosts: all
   remote_user: root
