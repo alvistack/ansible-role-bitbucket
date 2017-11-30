@@ -1,6 +1,14 @@
 Ansible Role for Bitbucket
 ==========================
 
+1.2.0 - TBC
+-----------
+
+### Major Changes
+
+-   Remove Ubuntu 14.04 support due to outdated Git provided by stock package
+-   Upgrade to Bitbucket 5.6.0
+
 1.1.0 - 2017-11-23
 ------------------
 
