@@ -8,6 +8,7 @@ Ansible Role for Bitbucket
 
 -   Remove Ubuntu 14.04 support due to outdated Git provided by stock package
 -   Upgrade to Bitbucket 5.6.0
+-   Add Ubuntu 17.10 and 18.04 support
 
 1.1.0 - 2017-11-23
 ------------------
