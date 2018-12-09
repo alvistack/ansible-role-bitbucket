@@ -1,12 +1,8 @@
-#!/usr/bin/env bash
-
-# {{ ansible_managed }}
-
 # One way to set the BITBUCKET_HOME path is here via this variable.  Simply uncomment it and set a valid path like
 # /bitbucket/home.  You can of course set it outside in the command terminal; that will also work.
 #
 if [ -z "$BITBUCKET_HOME" ]; then
-    BITBUCKET_HOME="{{ bitbucket_home }}"
+    BITBUCKET_HOME=${BITBUCKET_HOME:-/var/atlassian/application-data/bitbucket}
 fi
 
 # When upgrading from the packaged distribution BITBUCKET_HOME may not be set. Fallback to legacy STASH_HOME

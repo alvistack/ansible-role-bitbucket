@@ -14,34 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Owner and group for Bitbucket.
-bitbucket_owner: "daemon"
-bitbucket_group: "daemon"
-
-# Location for the $BITBUCKET_HOME directory.
-bitbucket_home: "/var/atlassian/application-data/bitbucket"
-
-# Location for the $BITBUCKET_CATALINA directory.
-bitbucket_catalina: "/opt/atlassian/bitbucket"
-
-# Bitbucket JVM minimal and maximum memory usage.
+# JVM minimal and maximum memory usage.
 bitbucket_jvm_minimum_memory: "512m"
 bitbucket_jvm_maximum_memory: "1024m"
 
-# Bitbucket Apache Tomcat connector and server port.
-bitbucket_connector_port: "7990"
-bitbucket_server_port: "8006"
-
-# Conext path for Bitbucket installation.
-bitbucket_context_path: ~
-
-# If Bitbucket running behide reverse proxy, setup `bitbucket_scheme` with whatever
-# `http` or `https`, and supply `bitbucket_proxy_name` with its domain name.
-bitbucket_proxy_name: ~
-bitbucket_scheme: ~
+# Proxy and context path setup.
+bitbucket_catalina_connector_proxyname: ~
+bitbucket_catalina_connector_proxyport: ~
+bitbucket_catalina_connector_scheme: "http"
+bitbucket_catalina_connector_secure: "false"
+bitbucket_catalina_context_path: ~
 
 # Atlassian Support recommended JVM arguments.
 bitbucket_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 
-# URL for download Bitbucket archive.
-bitbucket_url: "https://downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-5.7.0.tar.gz"
+# Session timeout.
+bitbucket_session_timeout: "30"
+
+# URL for download archives.
+bitbucket_download_url: "https://downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-5.16.0.tar.gz"
+mysql_jdbc_download_url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.13.tar.gz"
+postgresql_jdbc_download_url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"

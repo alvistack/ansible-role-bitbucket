@@ -13,11 +13,11 @@
 #               Provide commands for manually starting and stopping Bitbucket.
 ### END INIT INFO
 
-BITBUCKET_OWNER={{ bitbucket_owner }}
-BITBUCKET_GROUP={{ bitbucket_group }}
-BITBUCKET_HOME={{ bitbucket_home }}
-BITBUCKET_CATALINA={{ bitbucket_catalina }}
-BITBUCKET_CATALINA_PID={{ bitbucket_home }}/log/bitbucket.pid
+BITBUCKET_OWNER=${BITBUCKET_OWNER:-daemon}
+BITBUCKET_GROUP=${BITBUCKET_GROUP:-daemon}
+BITBUCKET_HOME=${BITBUCKET_HOME:-/var/atlassian/application-data/bitbucket}
+BITBUCKET_CATALINA=${BITBUCKET_CATALINA:-/opt/atlassian/bitbucket}
+BITBUCKET_CATALINA_PID=${BITBUCKET_CATALINA}/work/catalina.pid
 
 start() {
     echo "Starting Bitbucket: "
@@ -69,14 +69,17 @@ status() {
 
 case "$1" in
     start)
-        start ${@:2}
+        shift
+        start $@
         ;;
     stop)
-        stop ${@:2}
+        shift
+        stop $@
         ;;
     restart)
-        stop ${@:2}
-        start ${@:2}
+        shift
+        stop $@
+        start $@
         ;;
     status)
         status

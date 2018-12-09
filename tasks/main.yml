@@ -44,98 +44,54 @@
     loop_var: "loop_var"
   tags: bitbucket
 
-- name: prepare files
+- name: prepare directories
   file:
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-    state: "{{ item.state }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
   with_items:
-    - { dest: "{{ bitbucket_catalina }}", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ bitbucket_home }}", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ bitbucket_home }}/shared", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755", state: "directory" }
+    - { dest: "/opt/atlassian/bitbucket", owner: "daemon", group: "daemon" }
+    - { dest: "/var/atlassian/application-data/bitbucket", owner: "daemon", group: "daemon" }
   tags: bitbucket
 
 - name: unarchive package
   shell: |
-    ARCHIVE="`mktemp --suffix=tar.gz`"
-    curl -sL {{ bitbucket_url }} > $ARCHIVE
-    tar zxf $ARCHIVE -C {{ bitbucket_catalina }} --strip-components=1
-    chown -Rf {{ bitbucket_owner }}:{{ bitbucket_group }} {{ bitbucket_catalina }}
-    rm -rf $ARCHIVE
+    cd /opt/atlassian/bitbucket
+    curl -skL {{ bitbucket_download_url }} | tar zxf - --strip-components 1
+    cd /opt/atlassian/bitbucket/app/WEB-INF/lib
+    rm -rf *mysql*.jar
+    curl -skL {{ mysql_jdbc_download_url }} tar zxf - --strip-components 1 --wildcards "mysql*/*mysql*.jar"
+    cd /opt/atlassian/bitbucket/app/WEB-INF/lib
+    rm -rf *postgresql*.jar
+    curl -skL {{ postgresql_jdbc_download_url }} -O
+    chown -Rf daemon:daemon /opt/atlassian/bitbucket
   args:
-    creates: "{{ bitbucket_catalina }}/bin/start-bitbucket.sh"
+    creates: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh"
   tags: bitbucket
 
 - name: copy templates
   template:
-    src: "{{ item.src }}"
+    src: "./templates{{ item.dest }}.j2"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
   with_items:
-    - { src: "etc/init.d/bitbucket.j2", dest: "/etc/init.d/bitbucket", owner: "root", group: "root", mode: "0755" }
-    - { src: "opt/atlassian/bitbucket/bin/_start-webapp.sh.j2", dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
-    - { src: "opt/atlassian/bitbucket/bin/set-bitbucket-home.sh.j2", dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-home.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
-    - { src: "opt/atlassian/bitbucket/bin/set-bitbucket-user.sh.j2", dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-user.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
-  tags: bitbucket
-
-- name: create bitbucket.properties
-  copy:
-    content: ""
-    dest: "{{ bitbucket_home }}/shared/bitbucket.properties"
-    force: "no"
-    owner: "{{ bitbucket_owner }}"
-    group: "{{ bitbucket_group }}"
-    mode: "0644"
-  tags: bitbucket
-
-- name: configure bitbucket.properties
-  lineinfile:
-    path: "{{ item.path }}"
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.context-path=", line: "server.context-path={{ bitbucket_context_path }}", state: "present" }
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.port=", line: "server.port={{ bitbucket_connector_port }}", state: "present" }
-  tags: bitbucket
-
-- name: configure bitbucket.properties (HTTP reverse proxy)
-  lineinfile:
-    path: "{{ item.path }}"
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-name=", line: "server.proxy-name={{ bitbucket_proxy_name }}", state: "present" }
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-port=", line: "server.proxy-port=80", state: "present" }
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.scheme=", line: "server.scheme={{ bitbucket_scheme }}", state: "present" }
-  when:
-    - bitbucket_proxy_name != none
-    - bitbucket_scheme == "http"
-  tags: bitbucket
-
-- name: configure bitbucket.properties (HTTPS reverse proxy)
-  lineinfile:
-    path: "{{ item.path }}"
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-name=", line: "server.proxy-name={{ bitbucket_proxy_name }}", state: "present" }
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.proxy-port=", line: "server.proxy-port=443", state: "present" }
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.scheme=", line: "server.scheme={{ bitbucket_scheme }}", state: "present" }
-    - { path: "{{ bitbucket_home }}/shared/bitbucket.properties", regexp: "^server.secure=", line: "server.secure=true", state: "present" }
-  when:
-    - bitbucket_proxy_name != none
-    - bitbucket_scheme == "https"
+    - { dest: "/etc/init.d/bitbucket", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/_start-webapp.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "daemon", group: "daemon", mode: "0755" }
   tags: bitbucket
 
 - name: enable service
   service:
-    name: "bitbucket"
-    enabled: "yes"
+    name: bitbucket
+    enabled: yes
+  changed_when: false
+  ignore_errors: yes
   tags: bitbucket
