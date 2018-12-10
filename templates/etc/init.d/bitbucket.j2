@@ -22,12 +22,8 @@ BITBUCKET_CATALINA_PID=${BITBUCKET_CATALINA}/work/catalina.pid
 start() {
     echo "Starting Bitbucket: "
 
-    mkdir -p ${BITBUCKET_HOME}
-    chmod -f 755 ${BITBUCKET_HOME}
-    chown -Rf ${BITBUCKET_OWNER}:${BITBUCKET_GROUP} ${BITBUCKET_HOME}
-
     if [ "x${USER}" != "x${BITBUCKET_OWNER}" ]; then
-        su -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/start-bitbucket.sh $@"
+        su -l -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/start-bitbucket.sh $@"
     else
         ${BITBUCKET_CATALINA}/bin/start-bitbucket.sh $@
     fi
@@ -39,7 +35,7 @@ stop() {
     echo "Shutting down Bitbucket: "
 
     if [ "x${USER}" != "x${BITBUCKET_OWNER}" ]; then
-        su -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/stop-bitbucket.sh $@"
+        su -l -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/stop-bitbucket.sh $@"
     else
         ${BITBUCKET_CATALINA}/bin/stop-bitbucket.sh $@
     fi
