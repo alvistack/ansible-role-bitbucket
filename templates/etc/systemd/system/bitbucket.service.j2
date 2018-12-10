@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=Atlassian Bitbucket
+After=syslog.target
+
+[Service]
+User=daemon
+Group=daemon
+ExecStart=/etc/init.d/bitbucket start
+ExecStop=/etc/init.d/bitbucket stop
+PIDFile=/opt/atlassian/bitbucket/work/catalina.pid
+
+[Install]
+WantedBy=multi-user.target
