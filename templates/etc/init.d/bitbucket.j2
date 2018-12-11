@@ -23,7 +23,7 @@ start() {
     echo "Starting Bitbucket: "
 
     if [ "x${USER}" != "x${BITBUCKET_OWNER}" ]; then
-        su -l -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/start-bitbucket.sh $@"
+        su -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/start-bitbucket.sh $@"
     else
         ${BITBUCKET_CATALINA}/bin/start-bitbucket.sh $@
     fi
@@ -35,7 +35,7 @@ stop() {
     echo "Shutting down Bitbucket: "
 
     if [ "x${USER}" != "x${BITBUCKET_OWNER}" ]; then
-        su -l -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/stop-bitbucket.sh $@"
+        su -s /bin/bash ${BITBUCKET_OWNER} -c "${BITBUCKET_CATALINA}/bin/stop-bitbucket.sh $@"
     else
         ${BITBUCKET_CATALINA}/bin/stop-bitbucket.sh $@
     fi
