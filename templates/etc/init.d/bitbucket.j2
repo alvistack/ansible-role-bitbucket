@@ -17,7 +17,7 @@ BITBUCKET_OWNER=${BITBUCKET_OWNER:-daemon}
 BITBUCKET_GROUP=${BITBUCKET_GROUP:-daemon}
 BITBUCKET_HOME=${BITBUCKET_HOME:-/var/atlassian/application-data/bitbucket}
 BITBUCKET_CATALINA=${BITBUCKET_CATALINA:-/opt/atlassian/bitbucket}
-BITBUCKET_CATALINA_PID=${BITBUCKET_CATALINA}/work/catalina.pid
+BITBUCKET_CATALINA_PID=${BITBUCKET_HOME}/log/bitbucket.pid
 
 start() {
     echo "Starting Bitbucket: "
