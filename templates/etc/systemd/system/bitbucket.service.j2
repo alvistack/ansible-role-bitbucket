@@ -7,13 +7,10 @@ After=syslog.target network.target
 [Service]
 ExecStart=/opt/atlassian/bitbucket/bin/start-bitbucket.sh
 ExecStop=/opt/atlassian/bitbucket/bin/stop-bitbucket.sh
-PIDFile=/var/atlassian/application-data/log/bitbucket.pid
+PIDFile=/var/atlassian/application-data/bitbucket/log/bitbucket.pid
 Type=forking
 User=daemon
 Group=daemon
-TimeoutStartSec=infinity
-LimitNOFILE=2048
-LimitNPROC=2048
 
 [Install]
 WantedBy=multi-user.target
