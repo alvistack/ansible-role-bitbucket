@@ -89,6 +89,18 @@
     - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "daemon", group: "daemon", mode: "0755" }
     - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "daemon", group: "daemon", mode: "0755" }
     - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "daemon", group: "daemon", mode: "0755" }
+  register: template_result
+  tags: bitbucket
+
+- name: systemctl daemon-reload
+  systemd:
+    name: bitbucket
+    daemon_reload: yes
+  when:
+    - ansible_service_mgr == 'systemd'
+    - template_result is changed
+  changed_when: false
+  ignore_errors: yes
   tags: bitbucket
 
 - name: enable service

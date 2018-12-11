@@ -2,14 +2,15 @@
 
 [Unit]
 Description=Atlassian Bitbucket
-After=syslog.target
+After=syslog.target network.target
 
 [Service]
+ExecStart=/opt/atlassian/bitbucket/bin/start-bitbucket.sh
+ExecStop=/opt/atlassian/bitbucket/bin/stop-bitbucket.sh
+PIDFile=/var/atlassian/application-data/bitbucket/log/bitbucket.pid
+Type=forking
 User=daemon
 Group=daemon
-ExecStart=/etc/init.d/bitbucket start
-ExecStop=/etc/init.d/bitbucket stop
-PIDFile=/opt/atlassian/bitbucket/work/catalina.pid
 
 [Install]
 WantedBy=multi-user.target
