@@ -47,7 +47,6 @@
 - name: groupadd
   group:
     name: "bitbucket"
-    gid: "67990"
     system: true
     state: "present"
   tags: bitbucket
@@ -56,7 +55,6 @@
   user:
     name: "bitbucket"
     group: "bitbucket"
-    uid: "67990"
     home: "/var/atlassian/application-data/bitbucket"
     shell: "/usr/sbin/nologin"
     system: true
