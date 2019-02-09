@@ -17,6 +17,8 @@
 - hosts: all
   remote_user: root
   roles:
+    - role: python
+    - role: bootstrap
     - role: git
     - role: java
       yum:
