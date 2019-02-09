@@ -18,7 +18,7 @@
   remote_user: root
   roles:
     - role: python
-    - role: yum
+    - role: bootstrap
     - role: git
     - role: java
       yum:
