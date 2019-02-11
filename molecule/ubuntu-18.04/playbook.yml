@@ -21,7 +21,7 @@
     - role: bootstrap
     - role: git
     - role: java
-      apt:
+      package:
         - { state: "latest", name: "openjdk-8-jdk" }
       java_home: "/usr/lib/jvm/java-8-openjdk-amd64"
     - role: bitbucket
