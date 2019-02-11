@@ -91,6 +91,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf bitbucket:bitbucket /opt/atlassian/bitbucket
   args:
+    executable: /bin/bash
     creates: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh"
   tags: bitbucket
 
