@@ -22,8 +22,8 @@
     - role: git
     - role: java
       package:
-        - { state: "latest", name: "java-1.8.0-openjdk" }
-      java_home: "/usr/lib/jvm/jre-openjdk"
+        - { state: "latest", name: "java-1_8_0-openjdk" }
+      java_home: "/usr/lib64/jvm/jre-openjdk"
     - role: bitbucket
 
 - hosts: all

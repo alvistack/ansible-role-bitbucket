@@ -21,7 +21,7 @@
     - role: bootstrap
     - role: git
     - role: java
-      yum:
+      package:
         - { state: "latest", name: "java-1.8.0-openjdk" }
       java_home: "/usr/lib/jvm/jre-openjdk"
     - role: bitbucket

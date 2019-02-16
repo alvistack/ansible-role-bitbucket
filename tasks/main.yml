@@ -80,6 +80,7 @@
 
 - name: unarchive package
   shell: |
+    set -o pipefail
     cd /opt/atlassian/bitbucket
     curl -skL {{ bitbucket_download_url }} | tar zxf - --strip-components=1
     cd /opt/atlassian/bitbucket/app/WEB-INF/lib
@@ -90,6 +91,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf bitbucket:bitbucket /opt/atlassian/bitbucket
   args:
+    executable: "/bin/bash"
     creates: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh"
   tags: bitbucket
 
