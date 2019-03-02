@@ -17,13 +17,12 @@
 - hosts: all
   remote_user: root
   roles:
-    - role: python
     - role: bootstrap
-    - role: git
     - role: java
       package:
         - { state: "latest", name: "openjdk-8-jdk" }
       java_home: "/usr/lib/jvm/java-8-openjdk-amd64"
+    - role: git
     - role: bitbucket
 
 - hosts: all
