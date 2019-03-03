@@ -17,9 +17,7 @@
 - hosts: all
   remote_user: root
   roles:
-    - role: python
     - role: bootstrap
-    - role: git
     - role: java
       package:
         - { state: "latest", name: "openjdk-8-jdk" }
@@ -30,6 +28,12 @@
         - { state: "latest", name: "java-1.8.0-openjdk" }
       java_home: "/usr/lib/jvm/jre-openjdk"
       when: ansible_os_family | lower == 'redhat'
+    - role: java
+      package:
+        - { state: "latest", name: "java-1_8_0-openjdk" }
+      java_home: "/usr/lib64/jvm/jre-openjdk"
+      when: ansible_os_family | lower == 'suse'
+    - role: git
     - role: bitbucket
 
 - hosts: all
