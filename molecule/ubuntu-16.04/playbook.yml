@@ -23,6 +23,9 @@
         - { state: "latest", name: "openjdk-8-jdk" }
       java_home: "/usr/lib/jvm/java-8-openjdk-amd64"
     - role: git
+      package:
+        - { state: "present", name: "git-man=1:2.7.4-0ubuntu1.6" }
+        - { state: "present", name: "git=1:2.7.4-0ubuntu1.6" }
     - role: bitbucket
 
 - hosts: all
