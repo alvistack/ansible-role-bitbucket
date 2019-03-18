@@ -24,8 +24,8 @@
       java_home: "/usr/lib/jvm/java-8-openjdk-amd64"
     - role: git
       package:
-        - { state: "present", deb: "https://launchpad.net/~git-core/+archive/ubuntu/ppa/+files/git-man_2.20.1-0ppa1~ubuntu18.04.1_all.deb" }
-        - { state: "present", deb: "https://launchpad.net/~git-core/+archive/ubuntu/ppa/+files/git_2.20.1-0ppa1~ubuntu18.04.1_amd64.deb" }
+        - { state: "present", deb: "http://archive.ubuntu.com/ubuntu/pool/main/g/git/git-man_2.17.1-1ubuntu0.4_all.deb" }
+        - { state: "present", deb: "http://archive.ubuntu.com/ubuntu/pool/main/g/git/git_2.17.1-1ubuntu0.4_amd64.deb" }
     - role: bitbucket
 
 - hosts: all
