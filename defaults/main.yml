@@ -32,6 +32,15 @@ bitbucket_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX
 bitbucket_session_timeout: "30"
 
 # URL for download archives.
-bitbucket_download_url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.1.2.tar.gz"
-mysql_jdbc_download_url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.14.tar.gz"
-postgresql_jdbc_download_url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
+bitbucket_download:
+  url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.1.2.tar.gz"
+  dest: "/tmp/atlassian-bitbucket-6.1.2.tar.gz"
+  checksum: "sha1:656265f26444f12025322d13e79b3b7e4bebcb47"
+mysql_jdbc_download:
+  url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.14.tar.gz"
+  dest: "/tmp/mysql-connector-java-8.0.14.tar.gz"
+  checksum: "sha1:ac684534f948b312ac2e3e5d9adfe28c05d62a5a"
+postgresql_jdbc_download:
+  url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
+  dest: "/tmp/postgresql-42.2.5.jar"
+  checksum: "sha1:951b7eda125f3137538a94e2cbdcf744088ad4c2"
