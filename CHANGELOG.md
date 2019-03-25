@@ -5,6 +5,7 @@
 ### Major Changes
 
   - Manually install archived GIT 2.20.1 for Bitbucket 6.0+, see https://jira.atlassian.com/browse/BSERV-11593
+  - Pre-download archives with checksum
 
 ## 2.4.0 - 2019-03-03
 
