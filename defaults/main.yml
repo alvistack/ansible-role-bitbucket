@@ -33,9 +33,9 @@ bitbucket_session_timeout: "30"
 
 # URL for download archives.
 bitbucket_download:
-  url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.1.2.tar.gz"
-  dest: "/tmp/atlassian-bitbucket-6.1.2.tar.gz"
-  checksum: "sha1:656265f26444f12025322d13e79b3b7e4bebcb47"
+  url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.1.3.tar.gz"
+  dest: "/tmp/atlassian-bitbucket-6.1.3.tar.gz"
+  checksum: "sha1:b48ebb93945f17f817d5cb299b834fbe18a202fb"
 mysql_jdbc_download:
   url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.14.tar.gz"
   dest: "/tmp/mysql-connector-java-8.0.14.tar.gz"
