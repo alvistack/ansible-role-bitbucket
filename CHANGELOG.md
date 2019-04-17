@@ -1,11 +1,16 @@
 # Ansible Role for Bitbucket
 
-## 2.5.0 - TBC
+## 2.6.0 - TBC
+
+### Major Changes
+
+## 2.5.0 - 2019-04-17
 
 ### Major Changes
 
   - Manually install archived GIT 2.20.1 for Bitbucket 6.0+, see https://jira.atlassian.com/browse/BSERV-11593
   - Pre-download archives with checksum
+  - Run test with `travis_wait 120`
 
 ## 2.4.0 - 2019-03-03
 
