@@ -146,6 +146,10 @@
     - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
   tags: bitbucket
 
+- name: flush handlers
+  meta: flush_handlers
+  tags: bitbucket
+
 - name: enable service
   service:
     name: bitbucket
