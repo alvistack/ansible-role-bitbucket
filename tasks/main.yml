@@ -149,9 +149,6 @@
     - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
     - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
     - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-  notify:
-    - bitbucket | systemctl daemon-reload
-    - bitbucket | systemctl restart
   tags: bitbucket
 
 - name: flush handlers
