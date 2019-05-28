@@ -107,6 +107,9 @@
   args:
     executable: "/bin/bash"
     creates: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh"
+  notify:
+    - bitbucket | systemctl daemon-reload
+    - bitbucket | systemctl restart
   tags: bitbucket
 
 - name: copy templates
@@ -127,6 +130,7 @@
     - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
   notify:
     - bitbucket | systemctl daemon-reload
+    - bitbucket | systemctl restart
   tags: bitbucket
 
 - name: prepare files
