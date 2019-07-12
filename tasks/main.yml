@@ -80,6 +80,9 @@
     - { dest: "/opt/atlassian/bitbucket/bin", owner: "bitbucket", group: "bitbucket" }
     - { dest: "/opt/atlassian/bitbucket/conf", owner: "bitbucket", group: "bitbucket" }
     - { dest: "/var/atlassian/application-data/bitbucket", owner: "bitbucket", group: "bitbucket" }
+    - { dest: "{{ bitbucket_download.dest | dirname }}" }
+    - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
+    - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
   tags: bitbucket
 
 - name: download archive

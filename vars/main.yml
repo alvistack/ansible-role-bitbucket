@@ -17,45 +17,45 @@
 _bitbucket_download:
   6.4.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.4.0.tar.gz"
-    dest: "/tmp/atlassian-bitbucket-6.4.0.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.4.0.tar.gz"
     checksum: "sha1:3e497fa1e8c2236d2787b57e2ca7bd8881e40e4c"
   6.3.2:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.3.2.tar.gz"
-    dest: "/tmp/atlassian-bitbucket-6.3.2.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.3.2.tar.gz"
     checksum: "sha1:19ebff72777dc65beb82378e9d1b58bb3a861c9a"
   6.3.1:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.3.1.tar.gz"
-    dest: "/tmp/atlassian-bitbucket-6.3.1.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.3.1.tar.gz"
     checksum: "sha1:2f0a37fbeaa6384c664ecb587dbc0a7abb39f1b8"
   6.3.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.3.0.tar.gz"
-    dest: "/tmp/atlassian-bitbucket-6.3.0.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.3.0.tar.gz"
     checksum: "sha1:8db35c3aadb32ba9785db605fb69c957b8dd9c56"
   6.2.1:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.2.1.tar.gz"
-    dest: "/tmp/atlassian-bitbucket-6.2.1.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.2.1.tar.gz"
     checksum: "sha1:5e86c4191a2af0293116174b1ab5348f168d195d"
   6.2.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.2.0.tar.gz"
-    dest: "/tmp/atlassian-bitbucket-6.2.0.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.2.0.tar.gz"
     checksum: "sha1:eef2e0eaf1f328cbd37b285cdf7e9895e5f76401"
 
 _mysql_jdbc_download:
   8.0.16:
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.16.tar.gz"
-    dest: "/tmp/mysql-connector-java-8.0.16.tar.gz"
+    dest: "/var/cache/ansible/mysql-connector-java-8.0.16.tar.gz"
     checksum: "sha1:12a12227640d00c8e249b81c7818c12e4ad943ba"
   5.1.47:
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz"
-    dest: "/tmp/mysql-connector-java-5.1.47.tar.gz"
+    dest: "/var/cache/ansible/mysql-connector-java-5.1.47.tar.gz"
     checksum: "sha1:abf720d4e48fabcf677653a9f61993e093526616"
 
 _postgresql_jdbc_download:
   42.2.6:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.6.jar"
-    dest: "/tmp/postgresql-42.2.6.jar"
+    dest: "/var/cache/ansible/postgresql-42.2.6.jar"
     checksum: "sha1:58586d617d57746853fc0b8f37c83a8384fcd0ca"
   42.2.5:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
-    dest: "/tmp/postgresql-42.2.5.jar"
+    dest: "/var/cache/ansible/postgresql-42.2.5.jar"
     checksum: "sha1:951b7eda125f3137538a94e2cbdcf744088ad4c2"
