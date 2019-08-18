@@ -78,7 +78,6 @@
     - { dest: "/lib/systemd/system" }
     - { dest: "/opt/atlassian/bitbucket", owner: "bitbucket", group: "bitbucket" }
     - { dest: "/opt/atlassian/bitbucket/bin", owner: "bitbucket", group: "bitbucket" }
-    - { dest: "/opt/atlassian/bitbucket/conf", owner: "bitbucket", group: "bitbucket" }
     - { dest: "/var/atlassian/application-data/bitbucket", owner: "bitbucket", group: "bitbucket" }
     - { dest: "{{ bitbucket_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
@@ -94,25 +93,25 @@
     - "{{ bitbucket_download }}"
     - "{{ mysql_jdbc_download }}"
     - "{{ postgresql_jdbc_download }}"
-  register: result
-  until: result is succeeded
+  register: get_url_result
+  until: get_url_result is succeeded
   tags: bitbucket
 
 - name: unarchive package
   shell: |
     set -o pipefail
     cd /opt/atlassian/bitbucket
-    tar zxf {{ bitbucket_download.dest }} --strip-components=1
+    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ bitbucket_download.dest }} && rsync -aq --delete $TMP_DIR/*/ . && rm -rf $TMP_DIR
     cd /opt/atlassian/bitbucket/app/WEB-INF/lib
     rm -rf *mysql*.jar
-    tar zxf {{ mysql_jdbc_download.dest }} --strip-components=1 --wildcards "mysql*/*mysql*.jar"
+    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} && mv $TMP_DIR/*/*mysql*-bin.jar . && rm -rf $TMP_DIR
     cd /opt/atlassian/bitbucket/app/WEB-INF/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf bitbucket:bitbucket /opt/atlassian/bitbucket
   args:
     executable: "/bin/bash"
-    creates: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh"
+  when: get_url_result is changed
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart
