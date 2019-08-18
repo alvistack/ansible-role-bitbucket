@@ -162,10 +162,8 @@
 
 - name: enable service
   service:
-    name: "{{ item.name }}"
+    name: "bitbucket"
     enabled: true
-  loop:
-    - { name: "bitbucket" }
   changed_when: false
   ignore_errors: true
   tags: bitbucket

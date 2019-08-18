@@ -33,8 +33,8 @@
   tasks:
     - name: start service
       service:
-        name: bitbucket
-        state: started
+        name: "bitbucket"
+        state: "started"
       changed_when: false
       ignore_errors: true
 
