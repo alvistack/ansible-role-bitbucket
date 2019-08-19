@@ -81,6 +81,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Java 11 no longer supports setting sun.jnu.encoding via the command line. With nothing set in the environment
+# to influence sun.jnu.encoding it will typically default to ANSI_X3.4-1968 on Linux.
+if [ -z "$LANG" ] ; then
+    export LANG="en_US.UTF-8"
+fi
+
 JVM_LIBRARY_PATH="$INST_DIR/lib/native;$BITBUCKET_HOME/lib/native"
 
 BITBUCKET_ARGS="-Datlassian.standalone=BITBUCKET -Dbitbucket.home=$BITBUCKET_HOME -Dbitbucket.install=$INST_DIR"
@@ -102,7 +108,7 @@ else
     if [ $? -eq 0 ]; then
         echo -e "The Bitbucket webapp has been started.\n"
         echo "If you cannot access Bitbucket within 3 minutes, or encounter other issues, check the troubleshooting guide at:"
-        echo "https://confluence.atlassian.com/display/BitbucketServerKB/Troubleshooting+Installation"
+        echo "http://go.atlassian.com/bbs-troubleshooting-installations"
     else
         if [ -f "$BITBUCKET_HOME/log/bitbucket.pid" ]; then
             # If the application failed to start, remove the PID file
