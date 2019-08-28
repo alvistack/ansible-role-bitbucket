@@ -109,6 +109,7 @@
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf bitbucket:bitbucket /opt/atlassian/bitbucket
+    chmod 0755 /opt/atlassian/bitbucket /opt/atlassian/bitbucket/bin
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
