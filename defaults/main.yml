@@ -32,6 +32,10 @@ postgresql_jdbc_version: "42.2.8"
 # PostgreSQL JDBC download details.
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
+# Owner and group for Bitbucket.
+bitbucket_owner: "bitbucket"
+bitbucket_group: "bitbucket"
+
 # JVM minimal and maximum memory usage.
 bitbucket_jvm_minimum_memory: "512m"
 bitbucket_jvm_maximum_memory: "1024m"

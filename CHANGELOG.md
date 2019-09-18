@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+  - Abstract `bitbucket_owner` and `bitbucket_group` as variable
+
 ## 3.4.0 - 2019-09-18
 
 ### Major Changes

@@ -50,15 +50,15 @@
 
 - name: groupadd
   group:
-    name: "bitbucket"
+    name: "{{ bitbucket_group }}"
     system: true
     state: "present"
   tags: bitbucket
 
 - name: useradd
   user:
-    name: "bitbucket"
-    group: "bitbucket"
+    name: "{{ bitbucket_owner }}"
+    group: "{{ bitbucket_group }}"
     home: "/var/atlassian/application-data/bitbucket"
     shell: "/usr/sbin/nologin"
     system: true
@@ -76,9 +76,9 @@
   loop:
     - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/opt/atlassian/bitbucket", owner: "bitbucket", group: "bitbucket" }
-    - { dest: "/opt/atlassian/bitbucket/bin", owner: "bitbucket", group: "bitbucket" }
-    - { dest: "/var/atlassian/application-data/bitbucket", owner: "bitbucket", group: "bitbucket" }
+    - { dest: "/opt/atlassian/bitbucket", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}" }
+    - { dest: "/opt/atlassian/bitbucket/bin", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}" }
+    - { dest: "/var/atlassian/application-data/bitbucket", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}" }
     - { dest: "{{ bitbucket_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
@@ -128,12 +128,12 @@
   loop:
     - { dest: "/etc/init.d/bitbucket", mode: "0755" }
     - { dest: "/lib/systemd/system/bitbucket.service" }
-    - { dest: "/opt/atlassian/bitbucket/bin/_start-webapp.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/_start-webapp.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart
@@ -149,12 +149,12 @@
   loop:
     - { dest: "/etc/init.d/bitbucket", mode: "0755" }
     - { dest: "/lib/systemd/system/bitbucket.service" }
-    - { dest: "/opt/atlassian/bitbucket/bin/_start-webapp.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
-    - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "bitbucket", group: "bitbucket", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/_start-webapp.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/set-jre-home.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/start-bitbucket.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/bitbucket/bin/stop-bitbucket.sh", owner: "{{ bitbucket_owner }}", group: "{{ bitbucket_group }}", mode: "0755" }
   tags: bitbucket
 
 - name: flush handlers
