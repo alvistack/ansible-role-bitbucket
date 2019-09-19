@@ -121,7 +121,9 @@
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf bitbucket:bitbucket {{ bitbucket_catalina }}
-    chmod 0755 {{ bitbucket_catalina }} {{ bitbucket_catalina }}/bin
+    chmod 0755 \
+      {{ bitbucket_catalina }} \
+      {{ bitbucket_catalina }}/bin
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
