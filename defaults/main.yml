@@ -32,8 +32,18 @@ postgresql_jdbc_version: "42.2.8"
 # PostgreSQL JDBC download details.
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
+# Owner and group for Bitbucket.
+bitbucket_owner: "bitbucket"
+bitbucket_group: "bitbucket"
+
+# Bitbucket home directory.
+bitbucket_home: "/var/atlassian/application-data/bitbucket"
+
+# Bitbucket installation directory.
+bitbucket_catalina: "/opt/atlassian/bitbucket"
+
 # JVM minimal and maximum memory usage.
-bitbucket_jvm_minimum_memory: "512m"
+bitbucket_jvm_minimum_memory: "1024m"
 bitbucket_jvm_maximum_memory: "1024m"
 
 # Proxy and context path setup.
@@ -44,7 +54,11 @@ bitbucket_catalina_connector_secure: "false"
 bitbucket_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
-bitbucket_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+bitbucket_jvm_support_recommended_args: >-
+  -Datlassian.plugins.enable.wait=300
+  -XX:+UnlockExperimentalVMOptions
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
-bitbucket_session_timeout: "30"
+bitbucket_session_timeout: "300"

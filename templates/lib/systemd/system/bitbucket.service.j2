@@ -5,12 +5,12 @@ Description=Atlassian Bitbucket
 After=syslog.target network.target
 
 [Service]
-ExecStart=/opt/atlassian/bitbucket/bin/start-bitbucket.sh
-ExecStop=/opt/atlassian/bitbucket/bin/stop-bitbucket.sh
-PIDFile=/var/atlassian/application-data/bitbucket/log/bitbucket.pid
 Type=forking
-User=bitbucket
-Group=bitbucket
+User={{ bitbucket_owner }}
+Group={{ bitbucket_group }}
+ExecStart={{ bitbucket_catalina }}/bin/start-bitbucket.sh
+ExecStop={{ bitbucket_catalina }}/bin/stop-bitbucket.sh
+PIDFile={{ bitbucket_home }}/log/bitbucket.pid
 
 [Install]
 WantedBy=multi-user.target
