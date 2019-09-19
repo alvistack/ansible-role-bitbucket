@@ -36,6 +36,12 @@ postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version]
 bitbucket_owner: "bitbucket"
 bitbucket_group: "bitbucket"
 
+# Bitbucket home directory.
+bitbucket_home: "/var/atlassian/application-data/bitbucket"
+
+# Bitbucket installation directory.
+bitbucket_catalina: "/opt/atlassian/bitbucket"
+
 # JVM minimal and maximum memory usage.
 bitbucket_jvm_minimum_memory: "512m"
 bitbucket_jvm_maximum_memory: "1024m"

@@ -5,6 +5,7 @@
 ### Major Changes
 
   - Abstract `bitbucket_owner` and `bitbucket_group` as variable
+  - Abstract `bitbucket_home` and `bitbucket_catalina` as variable
 
 ## 3.4.0 - 2019-09-18
 

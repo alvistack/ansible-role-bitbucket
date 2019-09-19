@@ -5,9 +5,9 @@ Description=Atlassian Bitbucket
 After=syslog.target network.target
 
 [Service]
-ExecStart=/opt/atlassian/bitbucket/bin/start-bitbucket.sh
-ExecStop=/opt/atlassian/bitbucket/bin/stop-bitbucket.sh
-PIDFile=/var/atlassian/application-data/bitbucket/log/bitbucket.pid
+ExecStart={{ bitbucket_catalina }}/bin/start-bitbucket.sh
+ExecStop={{ bitbucket_catalina }}/bin/stop-bitbucket.sh
+PIDFile={{ bitbucket_home }}/log/bitbucket.pid
 Type=forking
 User={{ bitbucket_owner }}
 Group={{ bitbucket_group }}
