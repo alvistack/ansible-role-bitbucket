@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+  - Default with Python 3
+  - Revamp molecule test with vagrant
   - Abstract `bitbucket_owner` and `bitbucket_group` as variable
   - Abstract `bitbucket_home` and `bitbucket_catalina` as variable
 
