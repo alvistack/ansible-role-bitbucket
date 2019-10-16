@@ -18,8 +18,12 @@
   src: https://github.com/alvistack/ansible-role-bootstrap
   version: develop
 
-- name: java
-  src: https://github.com/alvistack/ansible-role-java
+- name: locales
+  src: https://github.com/alvistack/ansible-role-locales
+  version: develop
+
+- name: timezone
+  src: https://github.com/alvistack/ansible-role-timezone
   version: develop
 
 - name: python
@@ -28,4 +32,8 @@
 
 - name: git
   src: https://github.com/alvistack/ansible-role-git
+  version: develop
+
+- name: java
+  src: https://github.com/alvistack/ansible-role-java
   version: develop
