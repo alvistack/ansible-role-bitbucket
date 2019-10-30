@@ -95,6 +95,7 @@
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     checksum: "{{ item.checksum }}"
+    timeout: 300
   loop:
     - "{{ bitbucket_download }}"
     - "{{ mysql_jdbc_download }}"
