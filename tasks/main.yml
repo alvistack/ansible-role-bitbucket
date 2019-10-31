@@ -121,7 +121,7 @@
     cd {{ bitbucket_catalina }}/app/WEB-INF/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf bitbucket:bitbucket {{ bitbucket_catalina }}
+    chown -Rf {{ bitbucket_owner }}:{{ bitbucket_group }} {{ bitbucket_catalina }}
     chmod 0755 \
       {{ bitbucket_catalina }} \
       {{ bitbucket_catalina }}/bin
