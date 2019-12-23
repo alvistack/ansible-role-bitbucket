@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bitbucket_download:
+  6.9.1:
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.9.1.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bitbucket-6.9.1.tar.gz"
+    checksum: "sha1:bce47e2e9c1b1f45bf2e3069217cfe1051f0663e"
   6.9.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.9.0.tar.gz"
     dest: "/var/cache/ansible/atlassian-bitbucket-6.9.0.tar.gz"
