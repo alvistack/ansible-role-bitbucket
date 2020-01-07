@@ -34,6 +34,6 @@
   src: https://github.com/alvistack/ansible-role-git
   version: develop
 
-- name: java
-  src: https://github.com/alvistack/ansible-role-java
+- name: openjdk
+  src: https://github.com/alvistack/ansible-role-openjdk
   version: develop

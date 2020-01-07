@@ -28,8 +28,8 @@
   become: true
   roles:
     - role: git
-    - role: java
-      java_release: "8"
+    - role: openjdk
+      openjdk_release: "8"
     - role: bitbucket
 
   post_tasks:
