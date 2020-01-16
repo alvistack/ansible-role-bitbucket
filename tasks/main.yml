@@ -107,7 +107,8 @@
 - name: unarchive package
   shell: |
     set -o pipefail
-    rm -rf {{ bitbucket_catalina }} && mkdir -p {{ bitbucket_catalina }}
+    rm -rf {{ bitbucket_catalina }} \
+      && mkdir -p {{ bitbucket_catalina }}
     cd {{ bitbucket_catalina }}
     TMP_DIR="`mktemp -d`" \
       && tar -zx -C $TMP_DIR -f {{ bitbucket_download.dest }} \
