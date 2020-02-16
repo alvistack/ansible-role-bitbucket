@@ -24,5 +24,4 @@
     - role: python
     - role: git
     - role: openjdk
-      openjdk_release: "8"
     - role: bitbucket
