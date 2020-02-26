@@ -17,29 +17,29 @@
 _bitbucket_download:
   6.10.1:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.10.1.tar.gz"
-    dest: "/var/cache/ansible/atlassian-bitbucket-6.10.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-6.10.1.tar.gz"
     checksum: "sha1:9e34533bc421f53c4428b74ac4c3fe702ac65131"
   6.10.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.10.0.tar.gz"
-    dest: "/var/cache/ansible/atlassian-bitbucket-6.10.0.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-6.10.0.tar.gz"
     checksum: "sha1:171b177622bbb9e894fee1652e5b30e225285f61"
   6.9.1:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.9.1.tar.gz"
-    dest: "/var/cache/ansible/atlassian-bitbucket-6.9.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-6.9.1.tar.gz"
     checksum: "sha1:bce47e2e9c1b1f45bf2e3069217cfe1051f0663e"
   6.9.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-6.9.0.tar.gz"
-    dest: "/var/cache/ansible/atlassian-bitbucket-6.9.0.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-6.9.0.tar.gz"
     checksum: "sha1:6596a19932a433945eb6b012457f4f3ac1aa980c"
 
 _mysql_jdbc_download:
   5.1.48:
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.48.tar.gz"
-    dest: "/var/cache/ansible/mysql-connector-java-5.1.48.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/mysql-connector-java-5.1.48.tar.gz"
     checksum: "sha1:a8067480d7d7e4a975771e08b48b64de18837341"
 
 _postgresql_jdbc_download:
   42.2.10:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.10.jar"
-    dest: "/var/cache/ansible/postgresql-42.2.10.jar"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.10.jar"
     checksum: "sha1:338af492789fd198dbd52735a22b1946030ecc96"

@@ -112,13 +112,13 @@
     rm -rf {{ bitbucket_catalina }} \
       && mkdir -p {{ bitbucket_catalina }}
     cd {{ bitbucket_catalina }}
-    TMP_DIR="`mktemp -d`" \
+    TMP_DIR="$(mktemp -d)" \
       && tar -zx -C $TMP_DIR -f {{ bitbucket_download.dest }} \
       && cp -rfT $TMP_DIR/* . \
       && rm -rf $TMP_DIR
     cd {{ bitbucket_catalina }}/app/WEB-INF/lib
     rm -rf *mysql*.jar
-    TMP_DIR="`mktemp -d`" \
+    TMP_DIR="$(mktemp -d)" \
       && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} \
       && mv $TMP_DIR/*/*mysql*-bin.jar . \
       && rm -rf $TMP_DIR
@@ -222,7 +222,7 @@
   meta: flush_handlers
   tags: bitbucket
 
-- name: enable service
+- name: start service
   service:
     name: "bitbucket"
     state: "started"
