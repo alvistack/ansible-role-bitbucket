@@ -1,6 +1,6 @@
 # Ansible Role for Bitbucket
 
-[![Travis](https://img.shields.io/travis/alvistack/ansible-role-bitbucket.svg)](https://travis-ci.org/alvistack/ansible-role-bitbucket)
+[![Travis](https://img.shields.io/travis/com/alvistack/ansible-role-bitbucket.svg)](https://travis-ci.com/alvistack/ansible-role-bitbucket)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.bitbucket-blue.svg)](https://galaxy.ansible.com/alvistack/bitbucket)
