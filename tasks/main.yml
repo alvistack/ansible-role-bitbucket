@@ -219,7 +219,7 @@
   meta: flush_handlers
   tags: bitbucket
 
-- name: start service
+- name: systemctl start bitbucket
   service:
     name: "bitbucket"
     state: "started"
