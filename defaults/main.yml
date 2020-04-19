@@ -17,6 +17,9 @@
 # Bitbucket version.
 bitbucket_version: "7.1.1"
 
+# Bitbucket download directory.
+bitbucket_download_directory: "{{ ansible_user_dir }}/.ansible/tmp"
+
 # Bitbucket download details.
 bitbucket_download: "{{ _bitbucket_download[bitbucket_version] }}"
 
