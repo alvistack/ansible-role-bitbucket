@@ -215,10 +215,6 @@
       mode: "0755"
   tags: bitbucket
 
-- name: flush handlers
-  meta: flush_handlers
-  tags: bitbucket
-
 - name: systemctl start bitbucket
   service:
     name: "bitbucket"
@@ -226,4 +222,8 @@
     enabled: true
   changed_when: false
   ignore_errors: true
+  tags: bitbucket
+
+- name: flush handlers
+  meta: flush_handlers
   tags: bitbucket
