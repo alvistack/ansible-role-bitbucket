@@ -20,7 +20,7 @@
   changed_when: false
   ignore_errors: true
 
-- name: bitbucket | systemctl restart
+- name: bitbucket | systemctl restart bitbucket
   service:
     name: "bitbucket"
     state: "restarted"
