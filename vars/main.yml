@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bitbucket_download:
+  7.2.3:
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.2.3.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.2.3.tar.gz"
+    checksum: "sha1:6d6fcb664d3205cace1525b42e8b4b75ffe41f93"
   7.2.2:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.2.2.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.2.2.tar.gz"
