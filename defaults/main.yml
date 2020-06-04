@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Bitbucket version.
-bitbucket_version: "7.2.3"
+bitbucket_version: "7.3.0"
 
 # Bitbucket download details.
 bitbucket_download: "{{ _bitbucket_download[bitbucket_version] }}"
