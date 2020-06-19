@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bitbucket_download:
+  7.3.1:
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.3.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.3.1.tar.gz"
+    checksum: "sha1:c8904deb589fc092d406f38e875da97402f70050"
   7.3.0:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.3.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.3.0.tar.gz"
@@ -31,14 +35,6 @@ _bitbucket_download:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.2.2.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.2.2.tar.gz"
     checksum: "sha1:776b3eb85615569304343344fd9075765f94dfc3"
-  7.2.1:
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.2.1.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.2.1.tar.gz"
-    checksum: "sha1:f6314120b380cacea85a603a7e3e9fd76fab8751"
-  7.2.0:
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.2.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.2.0.tar.gz"
-    checksum: "sha1:2aef2e67b23c9a3665315a4d0eb7a46d303029e9"
 
 _mysql_jdbc_download:
   5.1.49:
