@@ -135,7 +135,7 @@
   when: get_url_result is changed
   notify:
     - bitbucket | systemctl daemon-reload
-    - bitbucket | systemctl restart bitbucket
+    - bitbucket | systemctl restart bitbucket.service
   tags: bitbucket
 
 - name: copy templates
@@ -179,7 +179,7 @@
       mode: "0755"
   notify:
     - bitbucket | systemctl daemon-reload
-    - bitbucket | systemctl restart bitbucket
+    - bitbucket | systemctl restart bitbucket.service
   tags: bitbucket
 
 - name: prepare files
@@ -217,9 +217,9 @@
       mode: "0755"
   tags: bitbucket
 
-- name: systemctl start bitbucket
+- name: systemctl start bitbucket.service
   service:
-    name: "bitbucket"
+    name: "bitbucket.service"
     state: "started"
     enabled: true
   changed_when: false
