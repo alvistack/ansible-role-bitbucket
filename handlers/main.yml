@@ -20,9 +20,9 @@
   changed_when: false
   ignore_errors: true
 
-- name: bitbucket | systemctl restart bitbucket
+- name: bitbucket | systemctl restart bitbucket.service
   service:
-    name: "bitbucket"
+    name: "bitbucket.service"
     state: "restarted"
     enabled: true
   loop: "{{ ansible_play_hosts }}"
