@@ -215,6 +215,9 @@
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
+  notify:
+    - bitbucket | systemctl daemon-reload
+    - bitbucket | systemctl restart bitbucket.service
   tags: bitbucket
 
 - name: systemctl start bitbucket.service
