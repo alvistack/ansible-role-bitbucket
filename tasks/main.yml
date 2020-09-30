@@ -16,7 +16,6 @@
 
 - name: include default variables
   include_vars: "../vars/main.yml"
-  tags: bitbucket
 
 - name: include release specific variables
   include_vars: "{{ lookup('first_found', _params) }}"
@@ -31,7 +30,6 @@
       paths:
         - "../vars"
   ignore_errors: true
-  tags: bitbucket
 
 - name: include release specific tasks
   include_tasks: "{{ lookup('first_found', _params) }}"
@@ -46,14 +44,12 @@
       paths:
         - "."
   ignore_errors: true
-  tags: bitbucket
 
 - name: groupadd
   group:
     name: "{{ bitbucket_group }}"
     system: true
     state: "present"
-  tags: bitbucket
 
 - name: useradd
   user:
@@ -64,7 +60,6 @@
     system: true
     create_home: false
     state: "present"
-  tags: bitbucket
 
 - name: prepare directories
   file:
@@ -88,7 +83,6 @@
     - dest: "{{ bitbucket_home }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
-  tags: bitbucket
 
 - name: download archive
   vars:
@@ -105,7 +99,6 @@
     - "{{ postgresql_jdbc_download }}"
   register: get_url_result
   until: get_url_result is succeeded
-  tags: bitbucket
 
 - name: unarchive package
   shell: |
@@ -136,7 +129,6 @@
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
-  tags: bitbucket
 
 - name: copy templates
   template:
@@ -180,7 +172,6 @@
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
-  tags: bitbucket
 
 - name: prepare files
   file:
@@ -218,7 +209,6 @@
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
-  tags: bitbucket
 
 - name: systemctl start bitbucket.service
   service:
@@ -227,8 +217,6 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-  tags: bitbucket
 
 - name: flush handlers
   meta: flush_handlers
-  tags: bitbucket
