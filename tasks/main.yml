@@ -210,6 +210,9 @@
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: systemctl start bitbucket.service
   service:
     name: "bitbucket.service"
@@ -217,6 +220,3 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-
-- name: flush handlers
-  meta: flush_handlers
