@@ -43,8 +43,8 @@ bitbucket_home: "/var/atlassian/application-data/bitbucket"
 bitbucket_catalina: "/opt/atlassian/bitbucket"
 
 # JVM minimal and maximum memory usage.
-bitbucket_jvm_minimum_memory: "1024m"
-bitbucket_jvm_maximum_memory: "1024m"
+bitbucket_jvm_minimum_memory: "2048m"
+bitbucket_jvm_maximum_memory: "2048m"
 
 # Proxy and context path setup.
 bitbucket_catalina_connector_proxyname: ~
