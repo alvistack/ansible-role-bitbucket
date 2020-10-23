@@ -18,7 +18,7 @@ _bitbucket_download:
   "7.7.0":
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.7.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.7.0.tar.gz"
-    checksum: "sha1:da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    checksum: "sha1:12f6a028ee0df6036c10a1ca9d8bd5eb809c2694"
   "7.6.0":
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.6.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.6.0.tar.gz"
