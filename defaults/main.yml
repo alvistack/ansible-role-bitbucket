@@ -57,8 +57,8 @@ bitbucket_catalina_context_path: "/"
 bitbucket_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300
   -XX:+UnlockExperimentalVMOptions
-  -XX:+UseContainerSupport
-  -XX:+UseZGC
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
 bitbucket_session_timeout: "300"
