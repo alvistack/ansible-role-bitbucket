@@ -15,22 +15,18 @@
 # limitations under the License.
 
 _bitbucket_download:
-  "7.6.0":
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.6.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.6.0.tar.gz"
-    checksum: "sha1:e5bc257f56044b17f7c3018c8ec2626f33fc16ad"
-  "7.5.2":
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.5.2.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.5.2.tar.gz"
-    checksum: "sha1:0061bf4021c6a05ef78430d45b4165469f08e6ec"
-  "7.5.1":
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.5.1.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.5.1.tar.gz"
-    checksum: "sha1:aff25b55b88d4196c1b8ecb1a4d2a9d93a083451"
-  "7.5.0":
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.5.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.5.0.tar.gz"
-    checksum: "sha1:4c1380b732047c6927e44d88bff585b935ddb331"
+  "7.8.0":
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.8.0.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.8.0.tar.gz"
+    checksum: "sha1:c3e332fa2a847909f667ca7dd6093dff3f4e3765"
+  "7.7.1":
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.7.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.7.1.tar.gz"
+    checksum: "sha1:f7ec5aeea88f6fced04069b524792a77d7ac016d"
+  "7.7.0":
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.7.0.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bitbucket-7.7.0.tar.gz"
+    checksum: "sha1:12f6a028ee0df6036c10a1ca9d8bd5eb809c2694"
 
 _mysql_jdbc_download:
   "5.1.49":
@@ -39,7 +35,7 @@ _mysql_jdbc_download:
     checksum: "sha1:ed8f8574585edfb630b0b6ee4ebf6f6847795c0f"
 
 _postgresql_jdbc_download:
-  "42.2.17":
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.17.jar"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.17.jar"
-    checksum: "sha1:b3a214aa89d0fe146f216c2f4a3a4dfbe35d63bf"
+  "42.2.18":
+    url: "https://jdbc.postgresql.org/download/postgresql-42.2.18.jar"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.18.jar"
+    checksum: "sha1:a0a9c1d43c7727eeaf1b729477891185d3c71751"
