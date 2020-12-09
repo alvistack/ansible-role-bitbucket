@@ -102,7 +102,7 @@
 
 - name: unarchive package
   shell: |
-    set -o pipefail
+    set -euo pipefail
     rm -rf {{ bitbucket_catalina }} \
       && mkdir -p {{ bitbucket_catalina }}
     cd {{ bitbucket_catalina }}
