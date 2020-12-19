@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+# {{ ansible_managed }}
 
 if [ -z "$BIN_DIR" ] || [ -z "$INST_DIR" ] || [ -z "$BITBUCKET_HOME" ]; then
     echo "$0 is not intended to be run directly. Run start-bitbucket.sh instead"
@@ -108,7 +110,7 @@ else
     if [ $? -eq 0 ]; then
         echo -e "The Bitbucket webapp has been started.\n"
         echo "If you cannot access Bitbucket within 3 minutes, or encounter other issues, check the troubleshooting guide at:"
-        echo "http://go.atlassian.com/bbs-troubleshooting-installations"
+        echo "https://go.atlassian.com/bbs-troubleshooting-installations"
     else
         if [ -f "$BITBUCKET_HOME/log/bitbucket.pid" ]; then
             # If the application failed to start, remove the PID file
