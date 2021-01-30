@@ -83,6 +83,7 @@
     - dest: "{{ bitbucket_home }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
+  register: file_result
 
 - name: download archive
   vars:
@@ -97,12 +98,14 @@
     - "{{ bitbucket_download }}"
     - "{{ mysql_jdbc_download }}"
     - "{{ postgresql_jdbc_download }}"
+  when: file_result is changed
   register: get_url_result
   until: get_url_result is succeeded
 
 - name: unarchive package
   shell: |
     set -euo pipefail
+    exec &> >(tee -a {{ bitbucket_download.dest }}.log)
     rm -rf {{ bitbucket_catalina }} \
       && mkdir -p {{ bitbucket_catalina }}
     cd {{ bitbucket_catalina }}
@@ -125,7 +128,7 @@
       {{ bitbucket_catalina }}/bin
   args:
     executable: "/bin/bash"
-  when: get_url_result is changed
+    creates: "{{ bitbucket_download.dest }}.log"
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
