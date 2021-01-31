@@ -60,5 +60,5 @@ bitbucket_jvm_support_recommended_args: >-
   -XX:+UseCGroupMemoryLimitForHeap
   -XX:MaxRAMFraction=1
 
-# Session timeout.
-bitbucket_session_timeout: "300"
+# Session timeout (in mintues).
+bitbucket_session_timeout: "120"

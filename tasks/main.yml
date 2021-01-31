@@ -83,6 +83,9 @@
     - dest: "{{ bitbucket_home }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
+    - dest: "{{ bitbucket_home }}/shared"
+      owner: "{{ bitbucket_owner }}"
+      group: "{{ bitbucket_group }}"
   register: file_result
 
 - name: download archive
@@ -209,6 +212,28 @@
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
+  notify:
+    - bitbucket | systemctl daemon-reload
+    - bitbucket | systemctl restart bitbucket.service
+
+- name: patch {{ bitbucket_home }}/shared/bitbucket.properties
+  ini_file:
+    path: "{{ bitbucket_home }}/shared/bitbucket.properties"
+    section: ""
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    owner: "{{ bitbucket_owner }}"
+    group: "{{ bitbucket_group }}"
+    mode: "0644"
+    no_extra_spaces: true
+    state: "present"
+  loop:
+    - { option: "server.scheme", value: "{{ bitbucket_catalina_connector_scheme }}" }
+    - { option: "server.secure", value: "{{ bitbucket_catalina_connector_secure }}" }
+    - { option: "server.proxy-name", value: "{{ bitbucket_catalina_connector_proxyname }}" }
+    - { option: "server.proxy-port", value: "{{ bitbucket_catalina_connector_proxyport }}" }
+    - { option: "server.context-path", value: "{{ bitbucket_catalina_context_path }}" }
+    - { option: "server.session.timeout", value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
   notify:
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
