@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bitbucket_download:
+  "7.10.0":
+    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.10.0.tar.gz"
+    dest: "/var/cache/ansible/a458433b1ff4cc82d6512ab6344e225a029432da2b431ef53a1a175cf05362da/atlassian-bitbucket-7.10.0.tar.gz"
+    checksum: "sha256:a458433b1ff4cc82d6512ab6344e225a029432da2b431ef53a1a175cf05362da"
   "7.9.1":
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.9.1.tar.gz"
     dest: "/var/cache/ansible/d329991ed4153bcb19622e42912101689b67591a19b8894669452c8420a67c18/atlassian-bitbucket-7.9.1.tar.gz"
@@ -23,14 +27,6 @@ _bitbucket_download:
     url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.9.0.tar.gz"
     dest: "/var/cache/ansible/a2f1f02dbc9d8466b8582db932aac71d31ff1e65a4f990e5a23aee78ea93a564/atlassian-bitbucket-7.9.0.tar.gz"
     checksum: "sha256:a2f1f02dbc9d8466b8582db932aac71d31ff1e65a4f990e5a23aee78ea93a564"
-  "7.8.1":
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.8.1.tar.gz"
-    dest: "/var/cache/ansible/0588bf6f9a55b30d6ed70ab6e2d37e650e894d90cb2c2c9048c7d4c2633d216b/atlassian-bitbucket-7.8.1.tar.gz"
-    checksum: "sha256:0588bf6f9a55b30d6ed70ab6e2d37e650e894d90cb2c2c9048c7d4c2633d216b"
-  "7.8.0":
-    url: "https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.8.0.tar.gz"
-    dest: "/var/cache/ansible/5129b4f7f8aa6141af9475fdccbcfadacfe88f56ad2fa5911d16ccd4bd7f81e7/atlassian-bitbucket-7.8.0.tar.gz"
-    checksum: "sha256:5129b4f7f8aa6141af9475fdccbcfadacfe88f56ad2fa5911d16ccd4bd7f81e7"
 
 _mysql_jdbc_download:
   "5.1.49":
