@@ -18,14 +18,17 @@
   remote_user: root
   become: true
   tasks:
-    - include_role:
+    - name: include role
+      include_role:
         name: git
       tags: git
 
-    - include_role:
+    - name: include role
+      include_role:
         name: openjdk
       tags: openjdk
 
-    - include_role:
+    - name: include role
+      include_role:
         name: bitbucket
       tags: bitbucket
