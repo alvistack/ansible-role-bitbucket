@@ -15,18 +15,14 @@
 # limitations under the License.
 
 _bitbucket_download:
+  "7.12.0":
+    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.12.0.tar.gz"
+    dest: "/var/cache/ansible/c81ce96b26c4c1829745b29d190b710e6fa9fb98faeef299f0860342056b6a22/atlassian-bitbucket-7.12.0.tar.gz"
+    sha256sum: "c81ce96b26c4c1829745b29d190b710e6fa9fb98faeef299f0860342056b6a22"
   "7.11.2":
     url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.11.2.tar.gz"
     dest: "/var/cache/ansible/6173622da760ebbc530d439675ee1cb768e1d17ccd806ccacced719735f6be66/atlassian-bitbucket-7.11.2.tar.gz"
     sha256sum: "6173622da760ebbc530d439675ee1cb768e1d17ccd806ccacced719735f6be66"
-  "7.10.1":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.10.1.tar.gz"
-    dest: "/var/cache/ansible/b9198ea5a65b26cd7bd82f64f5c1bc71d2178ba9e1124a286feda44eba5d642a/atlassian-bitbucket-7.10.1.tar.gz"
-    sha256sum: "b9198ea5a65b26cd7bd82f64f5c1bc71d2178ba9e1124a286feda44eba5d642a"
-  "7.10.0":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.10.0.tar.gz"
-    dest: "/var/cache/ansible/a458433b1ff4cc82d6512ab6344e225a029432da2b431ef53a1a175cf05362da/atlassian-bitbucket-7.10.0.tar.gz"
-    sha256sum: "a458433b1ff4cc82d6512ab6344e225a029432da2b431ef53a1a175cf05362da"
 
 _mysql_jdbc_download:
   "5.1.49":
