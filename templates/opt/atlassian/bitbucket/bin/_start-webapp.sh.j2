@@ -55,13 +55,19 @@ if echo $UMASK | grep -qv '0[2367]7$'; then
     fi
 fi
 
-MAX_OPEN_FILES=4096
+MAX_OPEN_FILES=6192
 if [ $(ulimit -n) -lt ${MAX_OPEN_FILES} ]; then
     echo -e "\nThe current open files limit is set to less than $MAX_OPEN_FILES\nAttempting to increase limit..."
     if ulimit -n $MAX_OPEN_FILES; then
         echo -e "\tLimit increased to $MAX_OPEN_FILES open files"
     else
-        echo -e "Warning: Open file limit could not be increased. You may experience problems under heavy load"
+        echo -e "\n Couldn't increase file limit to $MAX_OPEN_FILES\nTrying a lower number..."
+        MAX_OPEN_FILES=4096
+        if ulimit -n $MAX_OPEN_FILES; then
+          echo -e "\tLimit increased to $MAX_OPEN_FILES open files"
+        else
+          echo -e "Warning: Open file limit could not be increased. You may experience problems under heavy load"
+        fi
     fi
 fi
 

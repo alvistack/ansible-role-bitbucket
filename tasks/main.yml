@@ -100,7 +100,6 @@
     creates: "{{ item.dest | dirname }}"
   loop:
     - "{{ bitbucket_download }}"
-    - "{{ mysql_jdbc_download }}"
     - "{{ postgresql_jdbc_download }}"
   register: result
   until: result is succeeded
@@ -115,12 +114,6 @@
     TMP_DIR="$(mktemp -d)" \
       && tar -zx -C $TMP_DIR -f {{ bitbucket_download.dest }} \
       && cp -rfT $TMP_DIR/* . \
-      && rm -rf $TMP_DIR
-    cd {{ bitbucket_catalina }}/app/WEB-INF/lib
-    rm -rf *mysql*.jar
-    TMP_DIR="$(mktemp -d)" \
-      && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} \
-      && mv $TMP_DIR/*/*mysql*-bin.jar . \
       && rm -rf $TMP_DIR
     cd {{ bitbucket_catalina }}/app/WEB-INF/lib
     rm -rf *postgresql*.jar
@@ -235,7 +228,6 @@
     - { option: "server.context-path", value: "{{ bitbucket_catalina_context_path }}" }
     - { option: "server.session.timeout", value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
   notify:
-    - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
 - name: flush handlers
