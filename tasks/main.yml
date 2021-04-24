@@ -228,7 +228,6 @@
     - { option: "server.context-path", value: "{{ bitbucket_catalina_context_path }}" }
     - { option: "server.session.timeout", value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
   notify:
-    - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
 - name: flush handlers
