@@ -75,8 +75,9 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
-    - { dest: "/lib/systemd/system" }
-    - { dest: "/lib/systemd/system/bitbucket.service.d" }
+    - { dest: "/lib/systemd/system/bitbucket.service.d", state: "absent" }
+    - { dest: "/usr/local/lib/systemd/system" }
+    - { dest: "/usr/local/lib/systemd/system/bitbucket.service.d" }
     - dest: "{{ bitbucket_catalina }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -143,7 +144,7 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/lib/systemd/system/bitbucket.service" }
+    - { dest: "/usr/local/lib/systemd/system/bitbucket.service" }
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/_start-webapp.sh.j2"
       owner: "{{ bitbucket_owner }}"
@@ -186,7 +187,8 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/lib/systemd/system/bitbucket.service" }
+    - { dest: "/lib/systemd/system/bitbucket.service", state: "absent" }
+    - { dest: "/usr/local/lib/systemd/system/bitbucket.service" }
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
