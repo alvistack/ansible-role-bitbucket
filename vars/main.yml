@@ -20,7 +20,7 @@ _postgresql_jdbc_version:
 _postgresql_jdbc_download:
   "42.2.20":
     url: "http://jdbc.postgresql.org/download/postgresql-42.2.20.jar"
-    dest: "/tmp/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
+    dest: "/var/cache/ansible/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
     checksum: "708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e"
 
 _bitbucket_version:
@@ -30,13 +30,13 @@ _bitbucket_version:
 _bitbucket_download:
   "7.12.1":
     url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.12.1.tar.gz"
-    dest: "/tmp/b848cef7e08a43d6410d8884561b17bcc21dc14023e1b10782b8c6668760f8df/atlassian-bitbucket-7.12.1.tar.gz"
+    dest: "/var/cache/ansible/b848cef7e08a43d6410d8884561b17bcc21dc14023e1b10782b8c6668760f8df/atlassian-bitbucket-7.12.1.tar.gz"
     checksum: "b848cef7e08a43d6410d8884561b17bcc21dc14023e1b10782b8c6668760f8df"
   "7.12.0":
     url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.12.0.tar.gz"
-    dest: "/tmp/c81ce96b26c4c1829745b29d190b710e6fa9fb98faeef299f0860342056b6a22/atlassian-bitbucket-7.12.0.tar.gz"
+    dest: "/var/cache/ansible/c81ce96b26c4c1829745b29d190b710e6fa9fb98faeef299f0860342056b6a22/atlassian-bitbucket-7.12.0.tar.gz"
     checksum: "c81ce96b26c4c1829745b29d190b710e6fa9fb98faeef299f0860342056b6a22"
   "7.11.2":
     url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.11.2.tar.gz"
-    dest: "/tmp/6173622da760ebbc530d439675ee1cb768e1d17ccd806ccacced719735f6be66/atlassian-bitbucket-7.11.2.tar.gz"
+    dest: "/var/cache/ansible/6173622da760ebbc530d439675ee1cb768e1d17ccd806ccacced719735f6be66/atlassian-bitbucket-7.11.2.tar.gz"
     checksum: "6173622da760ebbc530d439675ee1cb768e1d17ccd806ccacced719735f6be66"
