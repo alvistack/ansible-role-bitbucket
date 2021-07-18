@@ -1,9 +1,13 @@
 # Ansible Role for Bitbucket
 
-[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-bitbucket/master)](https://gitlab.com/alvistack/ansible-role-bitbucket/-/pipelines)
-[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/releases)
-[![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/blob/master/LICENSE)
-[![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.bitbucket-blue.svg)](https://galaxy.ansible.com/alvistack/bitbucket)
+[![Gitlab pipeline
+status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-bitbucket/master)](https://gitlab.com/alvistack/ansible-role-bitbucket/-/pipelines)
+[![GitHub
+release](https://img.shields.io/github/release/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/releases)
+[![GitHub
+license](https://img.shields.io/github/license/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/blob/master/LICENSE)
+[![Ansible
+Role](https://img.shields.io/badge/galaxy-alvistack.bitbucket-blue.svg)](https://galaxy.ansible.com/alvistack/bitbucket)
 
 Ansible Role for Atlassian Bitbucket Installation.
 
@@ -39,7 +43,8 @@ This role could simply deploy to `localhost` as below:
 ## License
 
   - Code released under [Apache License 2.0](LICENSE)
-  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+  - Docs released under [CC
+    BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
