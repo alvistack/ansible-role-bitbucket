@@ -30,12 +30,9 @@
 
 ### Major Changes
 
-  - Bugfix [ansible-lint
-    `namespace`](https://github.com/ansible-community/ansible-lint/pull/1451)
-  - Bugfix [ansible-lint
-    `no-handler`](https://github.com/ansible-community/ansible-lint/pull/1402)
-  - Bugfix [ansible-lint
-    `unnamed-task`](https://github.com/ansible-community/ansible-lint/pull/1413)
+  - Bugfix [ansible-lint `namespace`](https://github.com/ansible-community/ansible-lint/pull/1451)
+  - Bugfix [ansible-lint `no-handler`](https://github.com/ansible-community/ansible-lint/pull/1402)
+  - Bugfix [ansible-lint `unnamed-task`](https://github.com/ansible-community/ansible-lint/pull/1413)
   - Simplify Python dependency with system packages
   - Support RHEL 8 with Molecule
   - Support RHEL 7 with Molecule
@@ -182,8 +179,7 @@
 
 ### Major Changes
 
-  - Manually install archived GIT 2.20.1 for Bitbucket 6.0+, see
-    <https://jira.atlassian.com/browse/BSERV-11593>
+  - Manually install archived GIT 2.20.1 for Bitbucket 6.0+, see <https://jira.atlassian.com/browse/BSERV-11593>
   - Pre-download archives with checksum
   - Run test with `travis_wait 120`
 
@@ -226,10 +222,8 @@
 ### Major Changes
 
   - Install Bitbucket on Ubuntu 16.04/14.04 from source
-  - Remove CentOS 7/6 support due to outdated Git provided by stock
-    package
-  - Update /etc/init.d/bitbucket with better support for running with
-    dumb-init inside docker
+  - Remove CentOS 7/6 support due to outdated Git provided by stock package
+  - Update /etc/init.d/bitbucket with better support for running with dumb-init inside docker
   - Update test cases
 
 ## 1.0.0 - 2017-09-25
