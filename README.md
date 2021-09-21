@@ -1,5 +1,7 @@
 # Ansible Role for Bitbucket
 
+<img src="/alvistack.svg" width="75" alt="AlviStack">
+
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-bitbucket/master)](https://gitlab.com/alvistack/ansible-role-bitbucket/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bitbucket.svg)](https://github.com/alvistack/ansible-role-bitbucket/blob/master/LICENSE)
