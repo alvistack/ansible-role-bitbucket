@@ -24,7 +24,7 @@ postgresql_jdbc_version: "{{ _postgresql_jdbc_version[postgresql_jdbc_release] }
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
 # Bitbucket release.
-bitbucket_release: "7.20"
+bitbucket_release: "7.21"
 
 # Bitbucket version.
 bitbucket_version: "{{ _bitbucket_version[bitbucket_release] }}"
