@@ -19,16 +19,16 @@
   become: true
   tasks:
     - name: include role
-      include_role:
+      ansible.builtin.include_role:
         name: git
       tags: git
 
     - name: include role
-      include_role:
+      ansible.builtin.include_role:
         name: openjdk
       tags: openjdk
 
     - name: include role
-      include_role:
+      ansible.builtin.include_role:
         name: bitbucket
       tags: bitbucket
