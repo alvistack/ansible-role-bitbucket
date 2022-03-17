@@ -36,7 +36,7 @@
       skip: true
 
 - name: include release specific tasks
-  include_tasks: "{{ _loop_var }}"
+  ansible.builtin.include_tasks: "{{ _loop_var }}"
   loop: "{{ query('first_found', _params) }}"
   loop_control:
     loop_var: _loop_var
@@ -62,9 +62,9 @@
 - name: useradd
   ansible.builtin.user:
     name: "{{ bitbucket_owner }}"
-    ansible.builtin.group: "{{ bitbucket_group }}"
+    group: "{{ bitbucket_group }}"
     home: "{{ bitbucket_home }}"
-    ansible.builtin.shell: "/usr/sbin/nologin"
+    shell: "/usr/sbin/nologin"
     system: true
     create_home: false
     state: "present"
@@ -73,23 +73,23 @@
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    ansible.builtin.group: "{{ item.group | default('root') }}"
+    group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/etc/systemd/system" }
     - dest: "{{ bitbucket_catalina }}"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
     - dest: "{{ bitbucket_catalina }}/bin"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
     - dest: "{{ bitbucket_home }}"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
     - dest: "{{ bitbucket_home }}/shared"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
 
 - name: download archive
   ansible.builtin.shell: |
@@ -144,39 +144,39 @@
     dest: "{{ item.dest }}"
     src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
     owner: "{{ item.owner | default('root') }}"
-    ansible.builtin.group: "{{ item.group | default('root') }}"
+    group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
     - { dest: "/etc/systemd/system/bitbucket.service" }
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/_start-webapp.sh.j2"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-home.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh.j2"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-user.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh.j2"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-jre-home.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/set-jre-home.sh.j2"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/start-bitbucket.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/start-bitbucket.sh.j2"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/stop-bitbucket.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/stop-bitbucket.sh.j2"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
   notify:
     - bitbucket | systemctl daemon-reload
@@ -186,34 +186,34 @@
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    ansible.builtin.group: "{{ item.group | default('root') }}"
+    group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
     - { dest: "/etc/systemd/system/bitbucket.service" }
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-home.sh"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-user.sh"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-jre-home.sh"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/start-bitbucket.sh"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/stop-bitbucket.sh"
       owner: "{{ bitbucket_owner }}"
-      ansible.builtin.group: "{{ bitbucket_group }}"
+      group: "{{ bitbucket_group }}"
       mode: "0755"
   notify:
     - bitbucket | systemctl daemon-reload
@@ -226,7 +226,7 @@
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     owner: "{{ bitbucket_owner }}"
-    ansible.builtin.group: "{{ bitbucket_group }}"
+    group: "{{ bitbucket_group }}"
     mode: "0644"
     no_extra_spaces: true
     state: "present"
