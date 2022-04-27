@@ -20,10 +20,10 @@ collections:
     version: ">=0.0.0,<1.0.0"
 
 roles:
-  - name: git
+  - name: alvistack.git
     src: https://github.com/alvistack/ansible-role-git
     version: develop
 
-  - name: openjdk
+  - name: alvistack.openjdk
     src: https://github.com/alvistack/ansible-role-openjdk
     version: develop

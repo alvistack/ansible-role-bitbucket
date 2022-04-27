@@ -20,15 +20,15 @@
   tasks:
     - name: include role
       ansible.builtin.include_role:
-        name: git
-      tags: git
+        name: alvistack.git
+      tags: alvistack.git
 
     - name: include role
       ansible.builtin.include_role:
-        name: openjdk
-      tags: openjdk
+        name: alvistack.openjdk
+      tags: alvistack.openjdk
 
     - name: include role
       ansible.builtin.include_role:
-        name: bitbucket
-      tags: bitbucket
+        name: alvistack.bitbucket
+      tags: alvistack.bitbucket
