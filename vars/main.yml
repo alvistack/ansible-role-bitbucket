@@ -24,19 +24,15 @@ _postgresql_jdbc_download:
     checksum: "424c9675000020e228ab13f70e99d5d63ff18d2bd0106f0ddb3e2607fcc33af4"
 
 _bitbucket_version:
+  "8.1": "8.1.0"
   "8.0": "8.0.0"
-  "7.21": "7.21.1"
 
 _bitbucket_download:
+  "8.1.0":
+    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-8.1.0.tar.gz"
+    dest: "/var/cache/ansible/9212866260455b20014ad924a38106de2fcbbcd0473e72a886932b8e06b7ad16/atlassian-bitbucket-8.1.0.tar.gz"
+    checksum: "9212866260455b20014ad924a38106de2fcbbcd0473e72a886932b8e06b7ad16"
   "8.0.0":
     url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-8.0.0.tar.gz"
     dest: "/var/cache/ansible/dd8aa89edff46db1d1d1b66fa22cfdd5cfaac583996695ab30aabaee806f7f03/atlassian-bitbucket-8.0.0.tar.gz"
     checksum: "dd8aa89edff46db1d1d1b66fa22cfdd5cfaac583996695ab30aabaee806f7f03"
-  "7.21.1":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.21.1.tar.gz"
-    dest: "/var/cache/ansible/e5738568d2478c0e37077fd31e4a992a8aeba58f22c5814f46c3f42bda4549d0/atlassian-bitbucket-7.21.1.tar.gz"
-    checksum: "e5738568d2478c0e37077fd31e4a992a8aeba58f22c5814f46c3f42bda4549d0"
-  "7.21.0":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-7.21.0.tar.gz"
-    dest: "/var/cache/ansible/3717c54be87ee47f519b3f5696daac9bc038b2849eb3da1cac86c123f431ea53/atlassian-bitbucket-7.21.0.tar.gz"
-    checksum: "3717c54be87ee47f519b3f5696daac9bc038b2849eb3da1cac86c123f431ea53"
