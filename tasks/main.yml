@@ -69,76 +69,6 @@
     create_home: false
     state: "present"
 
-- name: prepare directories
-  ansible.builtin.file:
-    dest: "{{ item.dest }}"
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0755') }}"
-    state: "{{ item.state | default('directory') }}"
-  loop:
-    - { dest: "/etc/systemd/system" }
-    - dest: "{{ bitbucket_catalina }}"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-    - dest: "{{ bitbucket_catalina }}/bin"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-    - dest: "{{ bitbucket_home }}"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-    - dest: "{{ bitbucket_home }}/shared"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-
-- name: download archive
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
-    TMP_DIR="$(mktemp -d)" \
-      && cd $TMP_DIR \
-      && mkdir -p .{{ item.dest | dirname }} \
-      && curl -skL -m 300 {{ item.url }} > .{{ item.dest }} \
-      && echo -n "{{ item.checksum }} .{{ item.dest }}" | sha256sum -c - \
-      && mkdir -p {{ item.dest | dirname }} \
-      && mv .{{ item.dest }} {{ item.dest }} \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ item.checksum }}-get_url.log"
-  loop:
-    - "{{ bitbucket_download }}"
-    - "{{ postgresql_jdbc_download }}"
-  register: result
-  until: result is succeeded
-
-- name: unarchive package
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ bitbucket_download.checksum }}-unarchive.log)
-    rm -rf {{ bitbucket_catalina }} \
-      && mkdir -p {{ bitbucket_catalina }}
-    cd {{ bitbucket_catalina }}
-    TMP_DIR="$(mktemp -d)" \
-      && tar -zx -C $TMP_DIR -f {{ bitbucket_download.dest }} \
-      && cp -rfT $TMP_DIR/* . \
-      && rm -rf $TMP_DIR
-    cd {{ bitbucket_catalina }}/app/WEB-INF/lib
-    rm -rf *postgresql*.jar
-    cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf {{ bitbucket_owner }}:{{ bitbucket_group }} {{ bitbucket_catalina }}
-    chmod 0755 \
-      {{ bitbucket_catalina }} \
-      {{ bitbucket_catalina }}/bin
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ bitbucket_download.checksum }}-unarchive.log"
-  notify:
-    - bitbucket | systemctl daemon-reload
-    - bitbucket | systemctl restart bitbucket.service
-
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
@@ -147,7 +77,6 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/etc/systemd/system/bitbucket.service" }
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/_start-webapp.sh.j2"
       owner: "{{ bitbucket_owner }}"
@@ -163,23 +92,7 @@
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
-    - dest: "{{ bitbucket_catalina }}/bin/set-jre-home.sh"
-      src: "./templates/opt/atlassian/bitbucket/bin/set-jre-home.sh.j2"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-      mode: "0755"
-    - dest: "{{ bitbucket_catalina }}/bin/start-bitbucket.sh"
-      src: "./templates/opt/atlassian/bitbucket/bin/start-bitbucket.sh.j2"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-      mode: "0755"
-    - dest: "{{ bitbucket_catalina }}/bin/stop-bitbucket.sh"
-      src: "./templates/opt/atlassian/bitbucket/bin/stop-bitbucket.sh.j2"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-      mode: "0755"
   notify:
-    - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
 - name: prepare files
@@ -190,7 +103,6 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/etc/systemd/system/bitbucket.service" }
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -203,20 +115,7 @@
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
-    - dest: "{{ bitbucket_catalina }}/bin/set-jre-home.sh"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-      mode: "0755"
-    - dest: "{{ bitbucket_catalina }}/bin/start-bitbucket.sh"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-      mode: "0755"
-    - dest: "{{ bitbucket_catalina }}/bin/stop-bitbucket.sh"
-      owner: "{{ bitbucket_owner }}"
-      group: "{{ bitbucket_group }}"
-      mode: "0755"
   notify:
-    - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
 - name: patch {{ bitbucket_home }}/shared/bitbucket.properties
