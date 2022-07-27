@@ -14,29 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_postgresql_jdbc_version:
-  "42.4": "42.4.0"
-
-_postgresql_jdbc_download:
-  "42.4.0":
-    url: "http://jdbc.postgresql.org/download/postgresql-42.4.0.jar"
-    dest: "/var/cache/ansible/fe25b9c0a2c59458504ec88862853df522ee87f8a02564835d537c29ae4cb125/postgresql-42.4.0.jar"
-    checksum: "fe25b9c0a2c59458504ec88862853df522ee87f8a02564835d537c29ae4cb125"
-
 _bitbucket_version:
-  "8.2": "8.2.0"
-  "8.1": "8.1.1"
-
-_bitbucket_download:
-  "8.2.0":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-8.2.0.tar.gz"
-    dest: "/var/cache/ansible/0a529bce8b15e055fe288fac5fd3b0d35d40b56da9720d24c5b91bc1321b740e/atlassian-bitbucket-8.2.0.tar.gz"
-    checksum: "0a529bce8b15e055fe288fac5fd3b0d35d40b56da9720d24c5b91bc1321b740e"
-  "8.1.1":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-8.1.1.tar.gz"
-    dest: "/var/cache/ansible/2ac0bc37d8a62422aa0a758977894d01fc4944e85a1ec0bede9126756f4037d4/atlassian-bitbucket-8.1.1.tar.gz"
-    checksum: "2ac0bc37d8a62422aa0a758977894d01fc4944e85a1ec0bede9126756f4037d4"
-  "8.1.0":
-    url: "http://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-8.1.0.tar.gz"
-    dest: "/var/cache/ansible/9212866260455b20014ad924a38106de2fcbbcd0473e72a886932b8e06b7ad16/atlassian-bitbucket-8.1.0.tar.gz"
-    checksum: "9212866260455b20014ad924a38106de2fcbbcd0473e72a886932b8e06b7ad16"
+  "8.2": "8.2.1"
+  "8.1": "8.1.2"
