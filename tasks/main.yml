@@ -118,7 +118,7 @@
   notify:
     - bitbucket | systemctl restart bitbucket.service
 
-- name: patch {{ bitbucket_home }}/shared/bitbucket.properties
+- name: patch /opt/atlassian/bitbucket/shared/bitbucket.properties
   ini_file:
     path: "{{ bitbucket_home }}/shared/bitbucket.properties"
     section: ""
