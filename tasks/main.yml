@@ -119,7 +119,7 @@
     - bitbucket | systemctl restart bitbucket.service
 
 - name: patch /opt/atlassian/bitbucket/shared/bitbucket.properties
-  ini_file:
+  community.general.ini_file:
     path: "{{ bitbucket_home }}/shared/bitbucket.properties"
     section: ""
     option: "{{ item.option }}"
