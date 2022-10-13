@@ -33,12 +33,14 @@ bitbucket_catalina: "/opt/atlassian/bitbucket"
 # JVM minimal and maximum memory usage.
 bitbucket_jvm_minimum_memory: "2048m"
 bitbucket_jvm_maximum_memory: "2048m"
+bitbucket_jvm_reserved_code_cache_size: "512m"
 
 # Proxy and context path setup.
-bitbucket_catalina_connector_proxyname: ~
-bitbucket_catalina_connector_proxyport: ~
+bitbucket_catalina_connector_port: "7990"
 bitbucket_catalina_connector_scheme: "http"
 bitbucket_catalina_connector_secure: "false"
+bitbucket_catalina_connector_proxyname: ~
+bitbucket_catalina_connector_proxyport: ~
 bitbucket_catalina_context_path: ~
 
 # Atlassian Support recommended JVM arguments.
@@ -47,4 +49,4 @@ bitbucket_jvm_support_recommended_args: >-
   -XX:+UnlockExperimentalVMOptions
 
 # Session timeout (in mintues).
-bitbucket_session_timeout: "120"
+bitbucket_autologin_cookie_age: "120"
