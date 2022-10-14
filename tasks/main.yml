@@ -128,14 +128,15 @@
     group: "{{ bitbucket_group }}"
     mode: "0644"
     no_extra_spaces: true
-    state: "present"
+    state: "{{ item.value | ternary('present', 'absent') }}"
   loop:
+    - { option: "server.port", value: "{{ bitbucket_catalina_connector_port }}" }
     - { option: "server.scheme", value: "{{ bitbucket_catalina_connector_scheme }}" }
     - { option: "server.secure", value: "{{ bitbucket_catalina_connector_secure }}" }
     - { option: "server.proxy-name", value: "{{ bitbucket_catalina_connector_proxyname }}" }
     - { option: "server.proxy-port", value: "{{ bitbucket_catalina_connector_proxyport }}" }
     - { option: "server.context-path", value: "{{ bitbucket_catalina_context_path }}" }
-    - { option: "server.session.timeout", value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
+    - { option: "server.session.timeout", value: "{{ (bitbucket_autologin_cookie_age | int) * 60 }}" }
   notify:
     - bitbucket | systemctl restart bitbucket.service
 
