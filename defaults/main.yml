@@ -37,8 +37,8 @@ bitbucket_jvm_reserved_code_cache_size: "512m"
 
 # Proxy and context path setup.
 bitbucket_catalina_connector_port: "7990"
-bitbucket_catalina_connector_scheme: "http"
-bitbucket_catalina_connector_secure: "false"
+bitbucket_catalina_connector_scheme: ~
+bitbucket_catalina_connector_secure: ~
 bitbucket_catalina_connector_proxyname: ~
 bitbucket_catalina_connector_proxyport: ~
 bitbucket_catalina_context_path: ~
