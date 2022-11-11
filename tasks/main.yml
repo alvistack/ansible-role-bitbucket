@@ -69,6 +69,29 @@
     create_home: false
     state: "present"
 
+- name: prepare directories
+  ansible.builtin.file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
+  loop:
+    - dest: "{{ bitbucket_catalina }}"
+      owner: "{{ bitbucket_owner }}"
+      group: "{{ bitbucket_group }}"
+      mode: "0700"
+    - dest: "{{ bitbucket_catalina }}/bin"
+      owner: "{{ bitbucket_owner }}"
+      group: "{{ bitbucket_group }}"
+    - dest: "{{ bitbucket_home }}"
+      owner: "{{ bitbucket_owner }}"
+      group: "{{ bitbucket_group }}"
+    - dest: "{{ bitbucket_home }}/shared"
+      owner: "{{ bitbucket_owner }}"
+      group: "{{ bitbucket_group }}"
+      mode: "0750"
+
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
