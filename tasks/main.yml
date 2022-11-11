@@ -80,6 +80,7 @@
     - dest: "{{ bitbucket_catalina }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
+      mode: "0700"
     - dest: "{{ bitbucket_catalina }}/bin"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -89,6 +90,7 @@
     - dest: "{{ bitbucket_home }}/shared"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
+      mode: "0750"
 
 - name: copy templates
   ansible.builtin.template:
