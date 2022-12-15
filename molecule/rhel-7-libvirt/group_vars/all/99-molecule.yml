@@ -15,3 +15,5 @@
 # limitations under the License.
 
 openjdk_release: "11"
+
+git_release: "2.37"
