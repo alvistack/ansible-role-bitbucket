@@ -77,6 +77,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
+    - dest: "/etc/systemd/system"
     - dest: "{{ bitbucket_catalina }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -100,6 +101,7 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
+    - dest: "/etc/systemd/system/bitbucket.service"
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       src: "./templates/opt/atlassian/bitbucket/bin/_start-webapp.sh.j2"
       owner: "{{ bitbucket_owner }}"
@@ -116,6 +118,7 @@
       group: "{{ bitbucket_group }}"
       mode: "0755"
   notify:
+    - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
 - name: prepare files
@@ -126,6 +129,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
+    - dest: "/etc/systemd/system/bitbucket.service"
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -139,6 +143,7 @@
       group: "{{ bitbucket_group }}"
       mode: "0755"
   notify:
+    - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
 - name: patch /opt/atlassian/bitbucket/shared/bitbucket.properties
