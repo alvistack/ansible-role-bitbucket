@@ -16,4 +16,4 @@
 
 openjdk_release: "11"
 
-git_release: "2.40"
+git_release: "2.42"
