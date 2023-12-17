@@ -65,7 +65,6 @@
 ## 7.2.0 - 2023-02-01
 
 -   Support Ansible community package 7.2.0
-
 -   Support multiple GIT release with package pinning
 
 ## 7.1.0 - 2022-12-09
@@ -85,11 +84,8 @@
 ## 6.5.0 - 2022-10-14
 
 -   Support Ansible community package 6.5.0
-
 -   Default with openJDK 11
-
 -   Support Ubuntu 22.10
-
 -   Support Fedora 37
 
 ## 6.4.0 - 2022-09-15
