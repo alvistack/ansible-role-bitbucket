@@ -14,8 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_bitbucket_version:
-  "8.18": "8.18.0"
-  "8.17": "8.17.1"
-  "8.9": "8.9.10"
-  "7.21": "7.21.22"
+openjdk_release: "17"
+
+git_release: "2.42"
