@@ -146,7 +146,7 @@
     - bitbucket | systemctl daemon-reload
     - bitbucket | systemctl restart bitbucket.service
 
-- name: patch /opt/atlassian/bitbucket/shared/bitbucket.properties
+- name: patch /var/atlassian/application-data/bitbucket/shared/bitbucket.properties
   community.general.ini_file:
     path: "{{ bitbucket_home }}/shared/bitbucket.properties"
     section: ""
@@ -164,7 +164,9 @@
     - { option: "server.proxy-name", value: "{{ bitbucket_catalina_connector_proxyname }}" }
     - { option: "server.proxy-port", value: "{{ bitbucket_catalina_connector_proxyport }}" }
     - { option: "server.context-path", value: "{{ bitbucket_catalina_context_path }}" }
-    - { option: "server.session.timeout", value: "{{ (bitbucket_autologin_cookie_age | int) * 60 }}" }
+    - { option: "server.session.timeout", value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
+    - { option: "auth.remember-me.enabled", value: "optional" }
+    - { option: "auth.remember-me.token.expiry", value: "{{ ((bitbucket_autologin_cookie_age | int) / 60 / 24) | int }}" }
   notify:
     - bitbucket | systemctl restart bitbucket.service
 
