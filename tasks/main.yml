@@ -1,5 +1,4 @@
 ---
-
 # Copyright 2024 Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,7 @@
 # limitations under the License.
 
 - name: include default variables
-  ansible.builtin.include_vars: "../vars/main.yml"
+  ansible.builtin.include_vars: ../vars/main.yml
 
 - name: include release specific variables
   ansible.builtin.include_vars: "{{ _loop_var }}"
@@ -32,7 +31,7 @@
         - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
         - "{{ ansible_os_family | lower }}.yml"
       paths:
-        - "../vars"
+        - ../vars
       skip: true
 
 - name: include release specific tasks
@@ -50,24 +49,24 @@
         - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
         - "{{ ansible_os_family | lower }}.yml"
       paths:
-        - "."
+        - .
       skip: true
 
 - name: groupadd
   ansible.builtin.group:
     name: "{{ bitbucket_group }}"
     system: true
-    state: "present"
+    state: present
 
 - name: useradd
   ansible.builtin.user:
     name: "{{ bitbucket_owner }}"
     group: "{{ bitbucket_group }}"
     home: "{{ bitbucket_home }}"
-    shell: "/bin/bash"
+    shell: /bin/bash
     system: true
     create_home: false
-    state: "present"
+    state: present
 
 - name: prepare directories
   ansible.builtin.file:
@@ -77,7 +76,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
-    - dest: "/etc/systemd/system"
+    - dest: /etc/systemd/system
     - dest: "{{ bitbucket_catalina }}"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -101,19 +100,19 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - dest: "/etc/systemd/system/bitbucket.service"
+    - dest: /etc/systemd/system/bitbucket.service
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
-      src: "./templates/opt/atlassian/bitbucket/bin/_start-webapp.sh.j2"
+      src: ./templates/opt/atlassian/bitbucket/bin/_start-webapp.sh.j2
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-home.sh"
-      src: "./templates/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh.j2"
+      src: ./templates/opt/atlassian/bitbucket/bin/set-bitbucket-home.sh.j2
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
     - dest: "{{ bitbucket_catalina }}/bin/set-bitbucket-user.sh"
-      src: "./templates/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh.j2"
+      src: ./templates/opt/atlassian/bitbucket/bin/set-bitbucket-user.sh.j2
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
       mode: "0755"
@@ -129,7 +128,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - dest: "/etc/systemd/system/bitbucket.service"
+    - dest: /etc/systemd/system/bitbucket.service
     - dest: "{{ bitbucket_catalina }}/bin/_start-webapp.sh"
       owner: "{{ bitbucket_owner }}"
       group: "{{ bitbucket_group }}"
@@ -158,15 +157,15 @@
     no_extra_spaces: true
     state: "{{ item.value | ternary('present', 'absent') }}"
   loop:
-    - { option: "server.port", value: "{{ bitbucket_catalina_connector_port }}" }
-    - { option: "server.scheme", value: "{{ bitbucket_catalina_connector_scheme }}" }
-    - { option: "server.secure", value: "{{ bitbucket_catalina_connector_secure }}" }
-    - { option: "server.proxy-name", value: "{{ bitbucket_catalina_connector_proxyname }}" }
-    - { option: "server.proxy-port", value: "{{ bitbucket_catalina_connector_proxyport }}" }
-    - { option: "server.context-path", value: "{{ bitbucket_catalina_context_path }}" }
-    - { option: "server.session.timeout", value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
-    - { option: "auth.remember-me.enabled", value: "optional" }
-    - { option: "auth.remember-me.token.expiry", value: "{{ ((bitbucket_autologin_cookie_age | int) / 60 / 24) | int }}" }
+    - { option: server.port, value: "{{ bitbucket_catalina_connector_port }}" }
+    - { option: server.scheme, value: "{{ bitbucket_catalina_connector_scheme }}" }
+    - { option: server.secure, value: "{{ bitbucket_catalina_connector_secure }}" }
+    - { option: server.proxy-name, value: "{{ bitbucket_catalina_connector_proxyname }}" }
+    - { option: server.proxy-port, value: "{{ bitbucket_catalina_connector_proxyport }}" }
+    - { option: server.context-path, value: "{{ bitbucket_catalina_context_path }}" }
+    - { option: server.session.timeout, value: "{{ (bitbucket_session_timeout | int) * 60 }}" }
+    - { option: auth.remember-me.enabled, value: optional }
+    - { option: auth.remember-me.token.expiry, value: "{{ ((bitbucket_autologin_cookie_age | int) / 60 / 24) | int }}" }
   notify:
     - bitbucket | systemctl restart bitbucket.service
 
@@ -175,8 +174,8 @@
 
 - name: systemctl start bitbucket.service
   ansible.builtin.service:
-    name: "bitbucket.service"
-    state: "started"
+    name: bitbucket.service
+    state: started
     enabled: true
   changed_when: false
   failed_when: false
