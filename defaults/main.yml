@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Bitbucket release.
-bitbucket_release: "9.4"
+bitbucket_release: "9.5"
 
 # Bitbucket version.
 bitbucket_version: "{{ _bitbucket_version[bitbucket_release] }}"
