@@ -14,21 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_apt_key:
-  - url: https://download.opensuse.org/repositories/home:/alvistack/Debian_13/Release.key
-    dest: /etc/apt/keyrings/home-alvistack.asc
-    checksum: "sha256:2959bf5709615cba0109715e4c2001066a4536398fa54f0f602abc208f04017e"
+openjdk_release: "21"
 
-_deb822_repository:
-  - name: home-alvistack
-    types: deb
-    uris: https://download.opensuse.org/repositories/home:/alvistack/Debian_13
-    suites: /
-    components:
-    signed_by: /etc/apt/keyrings/home-alvistack.asc
-    enabled: true
-    state: present
-
-_apt:
-  - { state: present, name: "atlassian-bitbucket=100:{{ bitbucket_version }}*" }
-  - { state: latest, name: fontconfig }
+git_release: "2.50"
