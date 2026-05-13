@@ -16,6 +16,6 @@
 
 _bitbucket_version: "{{ __bitbucket_version[bitbucket_release] }}"
 __bitbucket_version:
-  "10.2": 10.2.2
-  "9.4": 9.4.19
-  "8.19": 8.19.29
+  "10.3": 10.3.0
+  "10.2": 10.2.3
+  "9.4": 9.4.20
