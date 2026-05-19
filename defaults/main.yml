@@ -15,10 +15,10 @@
 # limitations under the License.
 
 # Bitbucket release.
-bitbucket_release: "10.2"
+bitbucket_release: "10.3"
 
 # Bitbucket version.
-bitbucket_version: "{{ _bitbucket_version[bitbucket_release] }}"
+bitbucket_version: "{{ _bitbucket_version }}"
 
 # Owner and group for Bitbucket.
 bitbucket_owner: bitbucket
